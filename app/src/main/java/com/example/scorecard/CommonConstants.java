@@ -11,5 +11,5 @@ public class CommonConstants {
     public static final String ERROR_LOG_TAG = "SCORECARD_ERROR";
     public static final String INFO_LOG_TAG = "SCORECARD_INFO";
     public static final String MATCH_DETAILS = "MATCH_DETAILS";
-
+    public static final String MATCH_DETAILS_RECORD_DETAILS_REFERENCE = "MATCH_DETAILS_RECORD_DETAILS_REFERENCE";
 }

@@ -1,10 +1,13 @@
 package com.example.scorecard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +15,10 @@ import android.widget.EditText;
 import com.example.scorecard.adapters.TeammateAdditionDetailsAdapter;
 import com.example.scorecard.models.CricketTeammate;
 import com.example.scorecard.models.MatchDetails;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +104,22 @@ public class RecordGameActivity extends AppCompatActivity {
                         .child(groupName)
                         .child(dateOfMatchKey)
                         .push()
-                        .setValue(matchDetails);
+                        .setValue(matchDetails, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                if (error == null) {
+                                    // Data was written successfully
+                                    String path = ref.getPath().toString();
+                                    Log.d(CommonConstants.INFO_LOG_TAG, "Data written to path: " + path);
+                                    Intent intent = new Intent(RecordGameActivity.this, ScoringScreenActicity.class);
+                                    intent.putExtra(CommonConstants.MATCH_DETAILS_RECORD_DETAILS_REFERENCE, path);
+                                    startActivity(intent);
+                                } else {
+                                    // An error occurred while writing the data
+                                    Log.e(CommonConstants.ERROR_LOG_TAG, "Error writing data: " + error.getMessage());
+                                }
+                            }
+                        });
 
 //                saveNewGameInfo(groupName, teamAName, teamBName, dateOfMatch, teamATeammates, teamBTeammates);
 
