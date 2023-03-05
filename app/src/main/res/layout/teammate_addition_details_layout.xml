@@ -24,14 +24,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Edit"
-            android:layout_weight=".75"/>
+            android:layout_weight=".75"
+            android:textColor="@color/white"
+            android:backgroundTint="#063970"
+            android:layout_marginRight="5dip"/>
 
         <Button
             android:id="@+id/teammate_addition_details_delete_player"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Delete"
-            android:layout_weight=".75"/>
+            android:layout_weight=".75"
+            android:textColor="@color/white"
+            android:backgroundTint="#063970"/>
 
     </LinearLayout>
 
