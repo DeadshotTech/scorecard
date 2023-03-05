@@ -1,5 +1,6 @@
 package com.deadshot.scorecard.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,27 +10,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deadshot.scorecard.constants.CommonConstants;
 import com.deadshot.scorecard.R;
-import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.models.adapter.PlayerScorecard;
 import com.deadshot.scorecard.utilities.BallerUtility;
 
 import java.util.List;
 
 public class PlayerBallingScoreCardAdapter extends RecyclerView.Adapter<PlayerBallingScoreCardAdapter.ViewHolder> {
-    private List<CricketTeammate> mData;
+    private List<PlayerScorecard> mData;
 
-    public PlayerBallingScoreCardAdapter(List<CricketTeammate> data) {
+    public PlayerBallingScoreCardAdapter(List<PlayerScorecard> data) {
         mData = data;
     }
 
-    public void addAdapterData(CricketTeammate data){
+    public void addAdapterData(PlayerScorecard data){
         mData.add(data);
     }
 
-    public List<CricketTeammate> getAdapterData(){
+    public List<PlayerScorecard> getAdapterData(){
         return mData;
     }
 
-    public void setAdapterData(List<CricketTeammate> data){
+    public void setAdapterData(List<PlayerScorecard> data){
         mData = data;
     }
 
@@ -43,16 +44,14 @@ public class PlayerBallingScoreCardAdapter extends RecyclerView.Adapter<PlayerBa
     @Override
     public void onBindViewHolder(PlayerBallingScoreCardAdapter.ViewHolder holder, int position) {
 
-        CricketTeammate playerInfo = mData.get(position);
-        String economy = BallerUtility.getBallerEconomy(playerInfo);
-        String overs = BallerUtility.getBallerOvers(playerInfo);
+        PlayerScorecard playerInfo = mData.get(position);
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
-        holder.tvPlayerOvers.setText(overs);
-        holder.tvPlayerMaidens.setText(playerInfo.getMaidensConceded() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerRunsConceded.setText(playerInfo.getRunsConceded() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerWickets.setText(playerInfo.getWicketsTaken() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerEconomy.setText(economy);
+        holder.tvPlayerOvers.setText(playerInfo.getBallerOvers());
+        holder.tvPlayerMaidens.setText(playerInfo.getBallerMaidens());
+        holder.tvPlayerRunsConceded.setText(playerInfo.getBallerRunsConceded());
+        holder.tvPlayerWickets.setText(playerInfo.getBallerWicketsTaken());
+        holder.tvPlayerEconomy.setText(playerInfo.getBallerEconomy());
 
     }
 

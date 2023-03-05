@@ -10,95 +10,82 @@
         android:text="Monday Blue Warriors"
         android:textSize="24sp"
         android:gravity="center_horizontal"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:background="#063970"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/group_icon"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/group_icon"
-                android:padding="16dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/dashboard_lets_play"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="220dip"
-                android:layout_height="220dip"
-                android:src="@drawable/lets_play_icon"
-                android:padding="16dp"/>
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_weight="1"
+            android:background="#063970">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="Record Game"
                 android:textSize="24sp"
                 android:gravity="center_horizontal"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lets_play_icon"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:id="@+id/dashboard_all_matches"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="100dip"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="220dip"
-                android:layout_height="220dip"
-                android:src="@drawable/all_matches_icon"
-                android:padding="16dp"/>
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="#063970">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="All Matches"
                 android:textSize="24sp"
                 android:gravity="center_horizontal"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:src="@drawable/all_matches_icon"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="24sp"
-        android:gravity="center_horizontal"
-        android:padding="16dp"/>
 
 </LinearLayout>

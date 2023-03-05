@@ -18,7 +18,9 @@ public class BallerUtility {
     public static String getBallerOvers(CricketTeammate playerInfo) {
         String overs = "";
         overs = (playerInfo.getBallsBalled() > 0) ?
-                (playerInfo.getBallsBalled()/6) + "." + (playerInfo.getBallsBalled()%6) :
+                (playerInfo.getBallsBalled()/6) +
+                        CommonConstants.DOT_SEPERATOR +
+                        (playerInfo.getBallsBalled()%6) :
                 (0 + CommonConstants.EMPTY_STRING);
         return overs;
     }

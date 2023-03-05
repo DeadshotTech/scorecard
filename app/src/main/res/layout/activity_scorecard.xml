@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="vs"
+                android:text="VS"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -99,43 +99,103 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#cccccc"
-            android:padding="5dip"/>
+            android:padding="5dip"
+            android:layout_marginBottom="5dip"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Scorecard"
+            android:padding="10dp"
+            android:text="SCORECARD"
             android:textSize="16sp"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:background="#063970"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scorecard_player_batting_stats"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dip"
+            android:background="@drawable/border"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_margin="5dip"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extras"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/scorecard_extra_runs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="0"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingRight="10dip"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_margin="5dip"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/scorecard_total_runs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="0/0 (8.0)"
+                android:gravity="right"
+                android:paddingRight="10dip"/>
+
+            <TextView
+                android:id="@+id/scorecard_run_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="RR: 0.0"
+                android:gravity="right"
+                android:paddingRight="10dip"/>
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="10dp"
             android:text=""
             android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scorecard_player_balling_stats"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/scorecard_record_game"
-            android:enabled="false"
-            android:visibility="invisible"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Record Game"/>
+            android:layout_weight="1"
+            android:layout_margin="5dip"
+            android:background="@drawable/border" />
 
     </LinearLayout>
 

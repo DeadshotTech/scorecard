@@ -7,29 +7,27 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.deadshot.scorecard.utilities.BatsmanUtility;
-import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.models.adapter.PlayerScorecard;
 import com.deadshot.scorecard.R;
-import com.deadshot.scorecard.models.CricketTeammate;
 
 import java.util.List;
 
 public class PlayerBattingScoreCardAdapter extends RecyclerView.Adapter<PlayerBattingScoreCardAdapter.ViewHolder> {
-    private List<CricketTeammate> mData;
+    private List<PlayerScorecard> mData;
 
-    public PlayerBattingScoreCardAdapter(List<CricketTeammate> data) {
+    public PlayerBattingScoreCardAdapter(List<PlayerScorecard> data) {
         mData = data;
     }
 
-    public void addAdapterData(CricketTeammate data){
+    public void addAdapterData(PlayerScorecard data){
         mData.add(data);
     }
 
-    public List<CricketTeammate> getAdapterData(){
+    public List<PlayerScorecard> getAdapterData(){
         return mData;
     }
 
-    public void setAdapterData(List<CricketTeammate> data){
+    public void setAdapterData(List<PlayerScorecard> data){
         mData = data;
     }
 
@@ -43,15 +41,14 @@ public class PlayerBattingScoreCardAdapter extends RecyclerView.Adapter<PlayerBa
     @Override
     public void onBindViewHolder(PlayerBattingScoreCardAdapter.ViewHolder holder, int position) {
 
-        CricketTeammate playerInfo = mData.get(position);
-        String strikeRate = BatsmanUtility.getBatsmanStrikeRate(playerInfo);
+        PlayerScorecard playerInfo = mData.get(position);
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
-        holder.tvPlayerRuns.setText(playerInfo.getRunsScored() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerBalls.setText(playerInfo.getBallsPlayed() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerFours.setText(playerInfo.getFoursScored() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerSixes.setText(playerInfo.getSixesScored() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerStrikeRate.setText(strikeRate);
+        holder.tvPlayerRuns.setText(playerInfo.getBatsmanRuns());
+        holder.tvPlayerBalls.setText(playerInfo.getBatsmanBallsPlayed());
+        holder.tvPlayerFours.setText(playerInfo.getBatsmanFoursScored());
+        holder.tvPlayerSixes.setText(playerInfo.getBatsmanSixesScored());
+        holder.tvPlayerStrikeRate.setText(playerInfo.getBatsmanStrikeRate());
 
     }
 
