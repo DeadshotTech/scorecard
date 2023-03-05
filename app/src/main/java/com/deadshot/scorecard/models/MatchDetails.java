@@ -5,6 +5,7 @@ import com.deadshot.scorecard.constants.CommonConstants;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MatchDetails implements Serializable {
     private static final long serialversionUID = 129348938L;
@@ -15,10 +16,15 @@ public class MatchDetails implements Serializable {
     private int teamBRuns;
     private int teamAWickets;
     private int teamBWickets;
+    private int teamABallsBalled;
+    private int teamBBallsBalled;
+    private int teamAExtrasConceded;
+    private int teamBExtrasConceded;
     List<CricketTeammate> teamATeammates;
     List<CricketTeammate> teamBTeammates;
     private String activeBattingTeam;
-    private String activeBowlingTeam;
+    private String activeBallingTeam;
+    private int maxNumberOfBalls;
 
     public MatchDetails(){
 
@@ -33,6 +39,81 @@ public class MatchDetails implements Serializable {
         setTeamBTeammates(new ArrayList<>());
         setActiveBattingTeam(CommonConstants.EMPTY_STRING);
 
+    }
+
+    @Override
+    public String toString() {
+        return "MatchDetails{" +
+                "teamAName='" + teamAName + '\'' +
+                ", teamBName='" + teamBName + '\'' +
+                ", dateOfMatch='" + dateOfMatch + '\'' +
+                ", teamARuns=" + teamARuns +
+                ", teamBRuns=" + teamBRuns +
+                ", teamAWickets=" + teamAWickets +
+                ", teamBWickets=" + teamBWickets +
+                ", teamABallsBalled=" + teamABallsBalled +
+                ", teamBBallsBalled=" + teamBBallsBalled +
+                ", teamAExtrasConceded=" + teamAExtrasConceded +
+                ", teamBExtrasConceded=" + teamBExtrasConceded +
+                ", teamATeammates=" + teamATeammates +
+                ", teamBTeammates=" + teamBTeammates +
+                ", activeBattingTeam='" + activeBattingTeam + '\'' +
+                ", activeBallingTeam='" + activeBallingTeam + '\'' +
+                ", maxNumberOfBalls=" + maxNumberOfBalls +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MatchDetails that = (MatchDetails) o;
+        return teamARuns == that.teamARuns && teamBRuns == that.teamBRuns && teamAWickets == that.teamAWickets && teamBWickets == that.teamBWickets && teamABallsBalled == that.teamABallsBalled && teamBBallsBalled == that.teamBBallsBalled && teamAExtrasConceded == that.teamAExtrasConceded && teamBExtrasConceded == that.teamBExtrasConceded && maxNumberOfBalls == that.maxNumberOfBalls && teamAName.equals(that.teamAName) && teamBName.equals(that.teamBName) && dateOfMatch.equals(that.dateOfMatch) && teamATeammates.equals(that.teamATeammates) && teamBTeammates.equals(that.teamBTeammates) && activeBattingTeam.equals(that.activeBattingTeam) && activeBallingTeam.equals(that.activeBallingTeam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(teamAName, teamBName, dateOfMatch, teamARuns, teamBRuns, teamAWickets, teamBWickets, teamABallsBalled, teamBBallsBalled, teamAExtrasConceded, teamBExtrasConceded, teamATeammates, teamBTeammates, activeBattingTeam, activeBallingTeam, maxNumberOfBalls);
+    }
+
+    public int getMaxNumberOfBalls() {
+        return maxNumberOfBalls;
+    }
+
+    public void setMaxNumberOfBalls(int maxNumberOfBalls) {
+        this.maxNumberOfBalls = maxNumberOfBalls;
+    }
+
+    public int getTeamABallsBalled() {
+        return teamABallsBalled;
+    }
+
+    public void setTeamABallsBalled(int teamABallsBalled) {
+        this.teamABallsBalled = teamABallsBalled;
+    }
+
+    public int getTeamBBallsBalled() {
+        return teamBBallsBalled;
+    }
+
+    public void setTeamBBallsBalled(int teamBBallsBalled) {
+        this.teamBBallsBalled = teamBBallsBalled;
+    }
+
+    public int getTeamAExtrasConceded() {
+        return teamAExtrasConceded;
+    }
+
+    public void setTeamAExtrasConceded(int teamAExtrasConceded) {
+        this.teamAExtrasConceded = teamAExtrasConceded;
+    }
+
+    public int getTeamBExtrasConceded() {
+        return teamBExtrasConceded;
+    }
+
+    public void setTeamBExtrasConceded(int teamBExtrasConceded) {
+        this.teamBExtrasConceded = teamBExtrasConceded;
     }
 
     public String getTeamAName() {
@@ -115,28 +196,12 @@ public class MatchDetails implements Serializable {
         this.activeBattingTeam = activeBattingTeam;
     }
 
-    public String getActiveBowlingTeam() {
-        return activeBowlingTeam;
+    public String getActiveBallingTeam() {
+        return activeBallingTeam;
     }
 
-    public void setActiveBowlingTeam(String activeBowlingTeam) {
-        this.activeBowlingTeam = activeBowlingTeam;
+    public void setActiveBallingTeam(String activeBallingTeam) {
+        this.activeBallingTeam = activeBallingTeam;
     }
 
-    @Override
-    public String toString() {
-        return "MatchDetails{" +
-                "teamAName='" + teamAName + '\'' +
-                ", teamBName='" + teamBName + '\'' +
-                ", dateOfMatch='" + dateOfMatch + '\'' +
-                ", teamARuns=" + teamARuns +
-                ", teamBRuns=" + teamBRuns +
-                ", teamAWickets=" + teamAWickets +
-                ", teamBWickets=" + teamBWickets +
-                ", teamATeammates=" + teamATeammates +
-                ", teamBTeammates=" + teamBTeammates +
-                ", activeBattingTeam='" + activeBattingTeam + '\'' +
-                ", activeBowlingTeam='" + activeBowlingTeam + '\'' +
-                '}';
-    }
 }

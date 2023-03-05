@@ -103,9 +103,9 @@ public class RecordGameActivity extends AppCompatActivity {
                 CricketTeammate activeBatsmanB = teamATeammates.get(1);
                 activeBatsmanB.setActiveBatsman(true);
                 teamATeammates.set(1, activeBatsmanB);
-                CricketTeammate activeBowler = teamBTeammates.get(0);
-                activeBowler.setActiveBowler(true);
-                teamBTeammates.set(0, activeBowler);
+                CricketTeammate activeBaller = teamBTeammates.get(0);
+                activeBaller.setActiveBaller(true);
+                teamBTeammates.set(0, activeBaller);
 
                 MatchDetails matchDetails = new MatchDetails();
                 matchDetails.setTeamAName(teamAName);

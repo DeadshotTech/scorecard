@@ -13,7 +13,7 @@ import com.deadshot.scorecard.models.CricketScorePerBall;
 import com.deadshot.scorecard.models.CricketTeammate;
 import com.deadshot.scorecard.models.MatchDetails;
 import com.deadshot.scorecard.utilities.BatsmanUtility;
-import com.deadshot.scorecard.utilities.BowlerUtility;
+import com.deadshot.scorecard.utilities.BallerUtility;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +26,8 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
     private static String activeBattingTeamName;
     private static List<CricketTeammate> activeBattingTeamList;
-    private static List<CricketTeammate> activeBowlingTeamList;
-    private static CricketTeammate activeBatsmanA = null, activeBatsmanB = null, activeBowler = null;
+    private static List<CricketTeammate> activeBallingTeamList;
+    private static CricketTeammate activeBatsmanA = null, activeBatsmanB = null, activeBaller = null;
     private static MatchDetails matchDetails;
     private String matchDetailsReferencePath = null;
 
@@ -83,60 +83,71 @@ public class ScoringScreenActivity extends AppCompatActivity {
     private void addRunsToScorecard(CricketScorePerBall cricketScorePerBall) {
 
         addRunsToActiveBatsman(cricketScorePerBall);
-        addRunsToActiveBowler(cricketScorePerBall);
-        addRunsToActiveBattingTeam(cricketScorePerBall);
-        addBallsToActiveBowlingTeam(cricketScorePerBall);
-//        Should not be required as the extras things have been handled in the individual function
-//        addExtras(cricketScorePerBall);
+        addRunsToActiveBaller(cricketScorePerBall);
+        addDetailsForActiveBattingTeam(cricketScorePerBall);
+        addDetailsForActiveBallingTeam(cricketScorePerBall);
 //        TODO: updateActivePlayer logic should be added here to move players around
         updateFirebaseData();
     }
 
-    private void addExtras(CricketScorePerBall cricketScorePerBall) {
-
-        if(cricketScorePerBall.isLegBye()){
-            activeBowler.setLegByesConceded(activeBowler.getLegByesConceded() + cricketScorePerBall.getExtraRuns());
-        }else if(cricketScorePerBall.isBye()){
-            activeBowler.setByesConceded(activeBowler.getByesConceded() + cricketScorePerBall.getExtraRuns());
-        }
-    }
-
-    private void addBallsToActiveBowlingTeam(CricketScorePerBall cricketScorePerBall) {
-
-//        TODO: Add details to scorecard is pending. Will require changes in MatchDetails as ballsBowled, wickets taken should be updated
-    }
-
-    private void addRunsToActiveBowler(CricketScorePerBall cricketScorePerBall) {
-
-        activeBowler.setBallsBowled(activeBowler.getBallsBowled() + cricketScorePerBall.getBallsToAdd());
-        activeBowler.setRunsConceded(activeBowler.getRunsConceded() + cricketScorePerBall.getRunsToAdd());
-        activeBowler.setExtrasConceded(activeBowler.getExtrasConceded() + cricketScorePerBall.getExtraRuns());
-        activeBowler.setLegByesConceded(cricketScorePerBall.isLegBye() ?
-                activeBowler.getLegByesConceded() + CommonConstants.ONE :
-                activeBowler.getLegByesConceded());
-        activeBowler.setByesConceded(cricketScorePerBall.isBye() ?
-                activeBowler.getByesConceded() + CommonConstants.ONE :
-                activeBowler.getByesConceded());
-        activeBowler.setWidesConceded(cricketScorePerBall.isWide() ?
-                activeBowler.getWidesConceded() + CommonConstants.ONE :
-                activeBowler.getWidesConceded());
-        activeBowler.setNoBallsConceded(cricketScorePerBall.isNoBall() ?
-                activeBowler.getNoBallsConceded() + CommonConstants.ONE :
-                activeBowler.getNoBallsConceded());
-        if(cricketScorePerBall.isBold() ||
-                cricketScorePerBall.isLbw() ||
-                cricketScorePerBall.isCatch()){
-            activeBowler.setWicketsTaken(activeBowler.getWicketsTaken() + CommonConstants.ONE);
-        }
-
-    }
-
-    private void addRunsToActiveBattingTeam(CricketScorePerBall cricketScorePerBall) {
+    private void addDetailsForActiveBallingTeam(CricketScorePerBall cricketScorePerBall) {
 
         if(matchDetails.getActiveBattingTeam().equals(CommonConstants.TEAM_A)){
-            matchDetails.setTeamARuns(matchDetails.getTeamARuns() + cricketScorePerBall.getRunsToAdd());
-
+            matchDetails.setTeamBExtrasConceded(matchDetails.getTeamBExtrasConceded() +
+                    cricketScorePerBall.getExtraRuns());
+            matchDetails.setTeamBBallsBalled(matchDetails.getTeamBBallsBalled() +
+                    cricketScorePerBall.getBallsToAdd());
+        }else{
+            matchDetails.setTeamAExtrasConceded(matchDetails.getTeamAExtrasConceded() +
+                    cricketScorePerBall.getExtraRuns());
+            matchDetails.setTeamABallsBalled(matchDetails.getTeamABallsBalled() +
+                    cricketScorePerBall.getBallsToAdd());
         }
+    }
+
+    private void addRunsToActiveBaller(CricketScorePerBall cricketScorePerBall) {
+
+        activeBaller.setBallsBalled(activeBaller.getBallsBalled() + cricketScorePerBall.getBallsToAdd());
+        activeBaller.setRunsConceded(activeBaller.getRunsConceded() + cricketScorePerBall.getRunsToAdd());
+        activeBaller.setExtrasConceded(activeBaller.getExtrasConceded() + cricketScorePerBall.getExtraRuns());
+        activeBaller.setLegByesConceded(cricketScorePerBall.isLegBye() ?
+                activeBaller.getLegByesConceded() + CommonConstants.ONE :
+                activeBaller.getLegByesConceded());
+        activeBaller.setByesConceded(cricketScorePerBall.isBye() ?
+                activeBaller.getByesConceded() + CommonConstants.ONE :
+                activeBaller.getByesConceded());
+        activeBaller.setWidesConceded(cricketScorePerBall.isWide() ?
+                activeBaller.getWidesConceded() + CommonConstants.ONE :
+                activeBaller.getWidesConceded());
+        activeBaller.setNoBallsConceded(cricketScorePerBall.isNoBall() ?
+                activeBaller.getNoBallsConceded() + CommonConstants.ONE :
+                activeBaller.getNoBallsConceded());
+        activeBaller.setWicketsTaken(activeBaller.getWicketsTaken() + getWicketsToAdd(cricketScorePerBall));
+
+    }
+
+    private void addDetailsForActiveBattingTeam(CricketScorePerBall cricketScorePerBall) {
+
+        if(matchDetails.getActiveBattingTeam().equals(CommonConstants.TEAM_A)){
+            matchDetails.setTeamARuns(matchDetails.getTeamARuns() +
+                    cricketScorePerBall.getRunsToAdd() +
+                    cricketScorePerBall.getExtraRuns());
+            matchDetails.setTeamAWickets(matchDetails.getTeamAWickets() + getWicketsToAdd(cricketScorePerBall));
+        }else{
+            matchDetails.setTeamBRuns(matchDetails.getTeamBRuns() +
+                    cricketScorePerBall.getRunsToAdd() +
+                    cricketScorePerBall.getExtraRuns());
+            matchDetails.setTeamBWickets(matchDetails.getTeamBWickets() + getWicketsToAdd(cricketScorePerBall));
+        }
+    }
+
+    private int getWicketsToAdd(CricketScorePerBall cricketScorePerBall) {
+        if(cricketScorePerBall.isBold() ||
+                cricketScorePerBall.isLbw() ||
+                cricketScorePerBall.isCatch())
+            return CommonConstants.ONE;
+
+        return CommonConstants.ZERO;
     }
 
     private void updateFirebaseData() {
@@ -398,19 +409,19 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
             if(activeBattingTeamName.equalsIgnoreCase(CommonConstants.TEAM_A)) {
                 activeBattingTeamList = matchDetails.getTeamATeammates();
-                activeBowlingTeamList = matchDetails.getTeamBTeammates();
+                activeBallingTeamList = matchDetails.getTeamBTeammates();
             }else{
                 activeBattingTeamList = matchDetails.getTeamBTeammates();
-                activeBowlingTeamList = matchDetails.getTeamATeammates();
+                activeBallingTeamList = matchDetails.getTeamATeammates();
             }
 
             activeBatsmanA = getActiveBatsman(activeBattingTeamList, null);
             activeBatsmanB = getActiveBatsman(activeBattingTeamList, activeBatsmanA);
-            activeBowler = extractActiveBowler(activeBowlingTeamList);
+            activeBaller = extractActiveBaller(activeBallingTeamList);
 
             setDetailsForActiveBatsmanA(activeBatsmanA);
             setDetailsForActiveBatsmanB(activeBatsmanB);
-            setDetailsForActiveBowler(activeBowler);
+            setDetailsForActiveBaller(activeBaller);
 
         }
 
@@ -429,31 +440,31 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
     }
 
-    private CricketTeammate extractActiveBowler(List<CricketTeammate> activeBowlingTeamList) {
+    private CricketTeammate extractActiveBaller(List<CricketTeammate> activeBallingTeamList) {
 
-        CricketTeammate activeBowler = null;
-        for(CricketTeammate cricketTeammate : activeBowlingTeamList){
-            if(cricketTeammate.isActiveBowler()) {
-                activeBowler = cricketTeammate;
+        CricketTeammate activeBaller = null;
+        for(CricketTeammate cricketTeammate : activeBallingTeamList){
+            if(cricketTeammate.isActiveBaller()) {
+                activeBaller = cricketTeammate;
                 break;
             }
         }
-        return activeBowler;
+        return activeBaller;
     }
 
-    private void setDetailsForActiveBowler(CricketTeammate activeBowler) {
+    private void setDetailsForActiveBaller(CricketTeammate activeBaller) {
 
-        String bowlerOvers = BowlerUtility.getBowlerOvers(activeBowler);
+        String ballerOvers = BallerUtility.getBallerOvers(activeBaller);
 
-        TextView tvBowlerName = findViewById(R.id.scoring_screen_bowler_name);
-        TextView tvBowlerRuns = findViewById(R.id.scoring_screen_bowler_runs_conceded);
-        TextView tvBowlerOvers = findViewById(R.id.scoring_screen_bowler_overs_bowled);
-        TextView tvBowlerWicketsTaken = findViewById(R.id.scoring_screen_bowler_wickets_taken);
+        TextView tvBallerName = findViewById(R.id.scoring_screen_baller_name);
+        TextView tvBallerRuns = findViewById(R.id.scoring_screen_baller_runs_conceded);
+        TextView tvBallerOvers = findViewById(R.id.scoring_screen_baller_overs_balled);
+        TextView tvBallerWicketsTaken = findViewById(R.id.scoring_screen_baller_wickets_taken);
 
-        tvBowlerName.setText(activeBowler.getPlayerName());
-        tvBowlerRuns.setText(activeBowler.getRunsConceded() + CommonConstants.EMPTY_STRING);
-        tvBowlerOvers.setText(bowlerOvers);
-        tvBowlerWicketsTaken.setText(activeBowler.getWicketsTaken() + CommonConstants.EMPTY_STRING);
+        tvBallerName.setText(activeBaller.getPlayerName());
+        tvBallerRuns.setText(activeBaller.getRunsConceded() + CommonConstants.EMPTY_STRING);
+        tvBallerOvers.setText(ballerOvers);
+        tvBallerWicketsTaken.setText(activeBaller.getWicketsTaken() + CommonConstants.EMPTY_STRING);
 
     }
 

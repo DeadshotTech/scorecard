@@ -11,7 +11,7 @@ public class CricketTeammate implements Serializable {
     private String age;
     private int runsScored;
     private int ballsPlayed;
-    private int ballsBowled;
+    private int ballsBalled;
     private int runsConceded;
     private int foursScored;
     private int sixesScored;
@@ -26,7 +26,7 @@ public class CricketTeammate implements Serializable {
     private boolean isCaptain;
     private boolean isViceCaptain;
     private boolean isActiveBatsman;
-    private boolean isActiveBowler;
+    private boolean isActiveBaller;
     private int extrasConceded;
 
     @Override
@@ -36,7 +36,7 @@ public class CricketTeammate implements Serializable {
                 ", age='" + age + '\'' +
                 ", runsScored=" + runsScored +
                 ", ballsPlayed=" + ballsPlayed +
-                ", ballsBowled=" + ballsBowled +
+                ", ballsBalled=" + ballsBalled +
                 ", runsConceded=" + runsConceded +
                 ", foursScored=" + foursScored +
                 ", sixesScored=" + sixesScored +
@@ -51,7 +51,7 @@ public class CricketTeammate implements Serializable {
                 ", isCaptain=" + isCaptain +
                 ", isViceCaptain=" + isViceCaptain +
                 ", isActiveBatsman=" + isActiveBatsman +
-                ", isActiveBowler=" + isActiveBowler +
+                ", isActiveBaller=" + isActiveBaller +
                 ", extrasConceded=" + extrasConceded +
                 '}';
     }
@@ -61,12 +61,12 @@ public class CricketTeammate implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CricketTeammate that = (CricketTeammate) o;
-        return runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBowled == that.ballsBowled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBowler == that.isActiveBowler && extrasConceded == that.extrasConceded && Objects.equals(playerName, that.playerName) && Objects.equals(age, that.age);
+        return runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBalled == that.ballsBalled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBaller == that.isActiveBaller && extrasConceded == that.extrasConceded && Objects.equals(playerName, that.playerName) && Objects.equals(age, that.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerName, age, runsScored, ballsPlayed, ballsBowled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBowler, extrasConceded);
+        return Objects.hash(playerName, age, runsScored, ballsPlayed, ballsBalled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBaller, extrasConceded);
     }
 
     public int getExtrasConceded() {
@@ -80,16 +80,16 @@ public class CricketTeammate implements Serializable {
     public CricketTeammate() {
 
         setPlayerName(CommonConstants.EMPTY_STRING);
-        setActiveBowler(false);
+        setActiveBaller(false);
         setActiveBatsman(false);
         setMaidensConceded(0);
         setWicketsTaken(0);
-        setBallsBowled(0);
+        setBallsBalled(0);
         setSixesScored(0);
         setFoursScored(0);
         setRunsConceded(0);
         setBallsPlayed(0);
-        setBallsBowled(0);
+        setBallsBalled(0);
         setRunsScored(0);
         setAge(CommonConstants.EMPTY_STRING);
         setByesConceded(0);
@@ -103,8 +103,8 @@ public class CricketTeammate implements Serializable {
 
     }
 
-    public boolean verifyIfBowlerHasBowled(){
-        return (ballsBowled > 0 ||
+    public boolean verifyIfBallerHasBalled(){
+        return (ballsBalled > 0 ||
                 widesConceded > 0 ||
                 noBallsConceded > 0 );
     }
@@ -164,12 +164,12 @@ public class CricketTeammate implements Serializable {
         this.ballsPlayed = ballsPlayed;
     }
 
-    public int getBallsBowled() {
-        return ballsBowled;
+    public int getBallsBalled() {
+        return ballsBalled;
     }
 
-    public void setBallsBowled(int ballsBowled) {
-        this.ballsBowled = ballsBowled;
+    public void setBallsBalled(int ballsBalled) {
+        this.ballsBalled = ballsBalled;
     }
 
     public int getRunsConceded() {
@@ -260,12 +260,12 @@ public class CricketTeammate implements Serializable {
         isActiveBatsman = activeBatsman;
     }
 
-    public boolean isActiveBowler() {
-        return isActiveBowler;
+    public boolean isActiveBaller() {
+        return isActiveBaller;
     }
 
-    public void setActiveBowler(boolean activeBowler) {
-        isActiveBowler = activeBowler;
+    public void setActiveBaller(boolean activeBaller) {
+        isActiveBaller = activeBaller;
     }
 
 }

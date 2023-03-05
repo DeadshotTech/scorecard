@@ -124,7 +124,7 @@
             android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/scorecard_player_bowling_stats"
+            android:id="@+id/scorecard_player_balling_stats"
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"/>

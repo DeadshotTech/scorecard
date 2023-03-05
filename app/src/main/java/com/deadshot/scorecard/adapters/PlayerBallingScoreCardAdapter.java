@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.deadshot.scorecard.constants.CommonConstants;
 import com.deadshot.scorecard.R;
 import com.deadshot.scorecard.models.CricketTeammate;
-import com.deadshot.scorecard.utilities.BowlerUtility;
+import com.deadshot.scorecard.utilities.BallerUtility;
 
 import java.util.List;
 
-public class PlayerBowlingScoreCardAdapter extends RecyclerView.Adapter<PlayerBowlingScoreCardAdapter.ViewHolder> {
+public class PlayerBallingScoreCardAdapter extends RecyclerView.Adapter<PlayerBallingScoreCardAdapter.ViewHolder> {
     private List<CricketTeammate> mData;
 
-    public PlayerBowlingScoreCardAdapter(List<CricketTeammate> data) {
+    public PlayerBallingScoreCardAdapter(List<CricketTeammate> data) {
         mData = data;
     }
 
@@ -34,18 +34,18 @@ public class PlayerBowlingScoreCardAdapter extends RecyclerView.Adapter<PlayerBo
     }
 
     @Override
-    public PlayerBowlingScoreCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlayerBallingScoreCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.player_batting_scorecard_layout, parent, false);
-        return new PlayerBowlingScoreCardAdapter.ViewHolder(view);
+        return new PlayerBallingScoreCardAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(PlayerBowlingScoreCardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(PlayerBallingScoreCardAdapter.ViewHolder holder, int position) {
 
         CricketTeammate playerInfo = mData.get(position);
-        String economy = BowlerUtility.getBowlerEconomy(playerInfo);
-        String overs = BowlerUtility.getBowlerOvers(playerInfo);
+        String economy = BallerUtility.getBallerEconomy(playerInfo);
+        String overs = BallerUtility.getBallerOvers(playerInfo);
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
         holder.tvPlayerOvers.setText(overs);

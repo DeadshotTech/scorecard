@@ -165,7 +165,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/scoring_screen_bowler_name"
+                    android:id="@+id/scoring_screen_baller_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Player Name"
@@ -183,7 +183,7 @@
                 android:weightSum="3">
 
                 <TextView
-                    android:id="@+id/scoring_screen_bowler_runs_conceded"
+                    android:id="@+id/scoring_screen_baller_runs_conceded"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:text="O: "
@@ -193,7 +193,7 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/scoring_screen_bowler_overs_bowled"
+                    android:id="@+id/scoring_screen_baller_overs_balled"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:text="W: "
@@ -203,7 +203,7 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/scoring_screen_bowler_wickets_taken"
+                    android:id="@+id/scoring_screen_baller_wickets_taken"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:text="R/R: "
@@ -447,12 +447,6 @@
                     android:gravity="center"/>
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/scoring_screen_score_record_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RECORD" />
 
         </LinearLayout>
 
