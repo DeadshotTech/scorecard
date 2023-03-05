@@ -17,8 +17,11 @@ import com.deadshot.scorecard.adapters.PlayerBattingScoreCardAdapter;
 import com.deadshot.scorecard.adapters.PlayerBallingScoreCardAdapter;
 import com.deadshot.scorecard.models.CricketTeammate;
 import com.deadshot.scorecard.models.MatchDetails;
+import com.deadshot.scorecard.models.adapter.PlayerScorecard;
+import com.deadshot.scorecard.utilities.CommonUtility;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,7 +104,7 @@ public class ScorecardActivity extends AppCompatActivity {
 
         RecyclerView rvPlayerBallingScorecard = (RecyclerView) findViewById(R.id.scorecard_player_balling_stats);
         rvPlayerBallingScorecard.setNestedScrollingEnabled(false);
-        List<CricketTeammate> ballingScorecard = new ArrayList<>();
+        List<PlayerScorecard> ballingScorecard = new ArrayList<>();
 
         playerBallingScoreCardAdapter = new PlayerBallingScoreCardAdapter(ballingScorecard);
         rvPlayerBallingScorecard.setAdapter(playerBallingScoreCardAdapter);
@@ -112,12 +115,14 @@ public class ScorecardActivity extends AppCompatActivity {
 
     private void setUpTeamBallingScoreCardForTeamA() {
 
-        List<CricketTeammate> teamABallingScorecard = new ArrayList<>();
+        List<PlayerScorecard> teamABallingScorecard = new ArrayList<>();
         teamABallingScorecard.add(getHeaderDataForBallingScorecard());
-        teamABallingScorecard.addAll(matchDetails.getTeamATeammates()
-                .stream()
-                .filter(CricketTeammate::verifyIfBallerHasBalled)
-                .collect(Collectors.toList()));
+        teamABallingScorecard.addAll(CommonUtility.getScorecardDetailsForAdapter(
+                matchDetails.getTeamATeammates()
+                        .stream()
+                        .filter(CricketTeammate::verifyIfBallerHasBalled)
+                        .collect(Collectors.toList())
+        ));
         playerBallingScoreCardAdapter.setAdapterData(teamABallingScorecard);
         playerBallingScoreCardAdapter.notifyDataSetChanged();
 
@@ -125,26 +130,28 @@ public class ScorecardActivity extends AppCompatActivity {
 
     private void setUpTeamBallingScoreCardForTeamB() {
 
-        List<CricketTeammate> teamBBallingScorecard = new ArrayList<>();
+        List<PlayerScorecard> teamBBallingScorecard = new ArrayList<>();
         teamBBallingScorecard.add(getHeaderDataForBallingScorecard());
-        teamBBallingScorecard.addAll(
+        teamBBallingScorecard.addAll(CommonUtility.getScorecardDetailsForAdapter(
                 matchDetails.getTeamBTeammates()
-                .stream()
+                        .stream()
                         .filter(CricketTeammate::verifyIfBallerHasBalled)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList())
+        ));
         playerBallingScoreCardAdapter.setAdapterData(teamBBallingScorecard);
         playerBallingScoreCardAdapter.notifyDataSetChanged();
 
     }
 
-    private CricketTeammate getHeaderDataForBallingScorecard() {
+    private PlayerScorecard getHeaderDataForBallingScorecard() {
 
-        CricketTeammate headerDataForBalling = new CricketTeammate();
-        headerDataForBalling.setPlayerName("Balling");
-        headerDataForBalling.setBallsBalled(1);
-        headerDataForBalling.setMaidensConceded(2);
-        headerDataForBalling.setRunsConceded(3);
-        headerDataForBalling.setWicketsTaken(4);
+        PlayerScorecard headerDataForBalling = new PlayerScorecard();
+        headerDataForBalling.setPlayerName(CommonConstants.PLAYER_NAME_HEADER);
+        headerDataForBalling.setBallerOvers(CommonConstants.OVER_HEADER);
+        headerDataForBalling.setBallerMaidens(CommonConstants.MAIDENS_HEADER);
+        headerDataForBalling.setBallerRunsConceded(CommonConstants.RUNS_HEADER);
+        headerDataForBalling.setBallerEconomy(CommonConstants.ECONOMY_HEADER);
+        headerDataForBalling.setBallerWicketsTaken(CommonConstants.WICKETS_HEADER);
 
         return headerDataForBalling;
     }
@@ -153,7 +160,7 @@ public class ScorecardActivity extends AppCompatActivity {
 
         RecyclerView rvPlayerBattingScorecard = (RecyclerView) findViewById(R.id.scorecard_player_batting_stats);
         rvPlayerBattingScorecard.setNestedScrollingEnabled(false);
-        List<CricketTeammate> battingScorecard = new ArrayList<>();
+        List<PlayerScorecard> battingScorecard = new ArrayList<>();
 
         playerBattingScoreCardAdapter = new PlayerBattingScoreCardAdapter(battingScorecard);
         rvPlayerBattingScorecard.setAdapter(playerBattingScoreCardAdapter);
@@ -165,9 +172,9 @@ public class ScorecardActivity extends AppCompatActivity {
 
     private void setUpTeamBattingScoreCardForTeamA() {
 
-        List<CricketTeammate> teamABattingScorecard = new ArrayList<>();
+        List<PlayerScorecard> teamABattingScorecard = new ArrayList<>();
         teamABattingScorecard.add(getHeaderDataForBattingScorecard());
-        teamABattingScorecard.addAll(matchDetails.getTeamATeammates());
+        teamABattingScorecard.addAll(CommonUtility.getScorecardDetailsForAdapter(matchDetails.getTeamATeammates()));
         playerBattingScoreCardAdapter.setAdapterData(teamABattingScorecard);
         playerBattingScoreCardAdapter.notifyDataSetChanged();
 
@@ -175,22 +182,23 @@ public class ScorecardActivity extends AppCompatActivity {
 
     private void setUpTeamBattingScoreCardForTeamB() {
 
-        List<CricketTeammate> teamBBattingScorecard = new ArrayList<>();
+        List<PlayerScorecard> teamBBattingScorecard = new ArrayList<>();
         teamBBattingScorecard.add(getHeaderDataForBattingScorecard());
-        teamBBattingScorecard.addAll(matchDetails.getTeamBTeammates());
+        teamBBattingScorecard.addAll(CommonUtility.getScorecardDetailsForAdapter(matchDetails.getTeamBTeammates()));
         playerBattingScoreCardAdapter.setAdapterData(teamBBattingScorecard);
         playerBattingScoreCardAdapter.notifyDataSetChanged();
 
     }
 
-    private CricketTeammate getHeaderDataForBattingScorecard() {
+    private PlayerScorecard getHeaderDataForBattingScorecard() {
 
-        CricketTeammate headerDataForBatting = new CricketTeammate();
-        headerDataForBatting.setPlayerName("Batting");
-        headerDataForBatting.setRunsScored(1);
-        headerDataForBatting.setBallsPlayed(2);
-        headerDataForBatting.setFoursScored(3);
-        headerDataForBatting.setSixesScored(4);
+        PlayerScorecard headerDataForBatting = new PlayerScorecard();
+        headerDataForBatting.setPlayerName(CommonConstants.PLAYER_NAME_HEADER);
+        headerDataForBatting.setBatsmanRuns(CommonConstants.RUNS_HEADER);
+        headerDataForBatting.setBatsmanFoursScored(CommonConstants.FOURS_HEADER);
+        headerDataForBatting.setBatsmanSixesScored(CommonConstants.SIXES_HEADER);
+        headerDataForBatting.setBatsmanStrikeRate(CommonConstants.STRIKE_RATE_HEADER);
+        headerDataForBatting.setBatsmanBallsPlayed(CommonConstants.BALLS_HEADER);
 
         return headerDataForBatting;
 

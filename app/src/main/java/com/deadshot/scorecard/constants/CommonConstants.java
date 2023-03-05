@@ -21,4 +21,14 @@ public class CommonConstants {
     public static final int ONE = 1;
     public static final int ZERO = 0;
     public static final int HUNDRED = 100;
+    public static final String PLAYER_NAME_HEADER = "Player Name";
+    public static final String OVER_HEADER = "O";
+    public static final String MAIDENS_HEADER = "M";
+    public static final String RUNS_HEADER = "R";
+    public static final String ECONOMY_HEADER = "Econ";
+    public static final String WICKETS_HEADER = "W";
+    public static final String FOURS_HEADER = "4s";
+    public static final String SIXES_HEADER = "6s";
+    public static final String STRIKE_RATE_HEADER = "S/R";
+    public static final String BALLS_HEADER = "B";
 }
