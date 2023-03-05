@@ -1,4 +1,4 @@
-package com.example.scorecard.activities;
+package com.deadshot.scorecard.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,13 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.scorecard.constants.CommonConstants;
-import com.example.scorecard.R;
-import com.example.scorecard.models.CricketScorePerBall;
-import com.example.scorecard.models.CricketTeammate;
-import com.example.scorecard.models.MatchDetails;
-import com.example.scorecard.utilities.BatsmanUtility;
-import com.example.scorecard.utilities.BowlerUtility;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.models.CricketScorePerBall;
+import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.models.MatchDetails;
+import com.deadshot.scorecard.utilities.BatsmanUtility;
+import com.deadshot.scorecard.utilities.BowlerUtility;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

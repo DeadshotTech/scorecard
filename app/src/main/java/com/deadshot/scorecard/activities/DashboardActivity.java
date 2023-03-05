@@ -1,4 +1,4 @@
-package com.example.scorecard.activities;
+package com.deadshot.scorecard.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.scorecard.R;
+import com.deadshot.scorecard.R;
 
 public class DashboardActivity extends AppCompatActivity {
 

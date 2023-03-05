@@ -1,4 +1,4 @@
-package com.example.scorecard.activities;
+package com.deadshot.scorecard.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.scorecard.constants.CommonConstants;
-import com.example.scorecard.R;
-import com.example.scorecard.adapters.TeammateAdditionDetailsAdapter;
-import com.example.scorecard.models.CricketTeammate;
-import com.example.scorecard.models.MatchDetails;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.adapters.TeammateAdditionDetailsAdapter;
+import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.models.MatchDetails;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

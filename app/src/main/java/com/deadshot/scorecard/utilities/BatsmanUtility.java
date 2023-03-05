@@ -1,7 +1,7 @@
-package com.example.scorecard.utilities;
+package com.deadshot.scorecard.utilities;
 
-import com.example.scorecard.constants.CommonConstants;
-import com.example.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.models.CricketTeammate;
 
 public class BatsmanUtility {
 

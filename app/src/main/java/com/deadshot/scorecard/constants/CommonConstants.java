@@ -1,4 +1,4 @@
-package com.example.scorecard.constants;
+package com.deadshot.scorecard.constants;
 
 public class CommonConstants {
 

@@ -1,6 +1,6 @@
-package com.example.scorecard.models;
+package com.deadshot.scorecard.models;
 
-import com.example.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.constants.CommonConstants;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.scorecard.models;
+package com.deadshot.scorecard.models;
 
 import java.util.Objects;
 

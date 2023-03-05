@@ -1,4 +1,4 @@
-package com.example.scorecard.utilities;
+package com.deadshot.scorecard.utilities;
 
 public class CommonUtility {
 

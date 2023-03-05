@@ -1,4 +1,4 @@
-package com.example.scorecard.activities;
+package com.deadshot.scorecard.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,12 +11,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.scorecard.constants.CommonConstants;
-import com.example.scorecard.R;
-import com.example.scorecard.adapters.PlayerBattingScoreCardAdapter;
-import com.example.scorecard.adapters.PlayerBowlingScoreCardAdapter;
-import com.example.scorecard.models.CricketTeammate;
-import com.example.scorecard.models.MatchDetails;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.adapters.PlayerBattingScoreCardAdapter;
+import com.deadshot.scorecard.adapters.PlayerBowlingScoreCardAdapter;
+import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.models.MatchDetails;
 
 import java.util.ArrayList;
 import java.util.List;
