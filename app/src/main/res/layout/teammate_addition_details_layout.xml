@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/teammate_addition_details_player_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Let's set you up"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:layout_weight="1.5"/>
+
+        <Button
+            android:id="@+id/teammate_addition_details_edit_player"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_weight=".75"
+            android:textColor="@color/white"
+            android:backgroundTint="#063970"
+            android:layout_marginRight="5dip"/>
+
+        <Button
+            android:id="@+id/teammate_addition_details_delete_player"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_weight=".75"
+            android:textColor="@color/white"
+            android:backgroundTint="#063970"/>
+
+    </LinearLayout>
+
+</LinearLayout>
