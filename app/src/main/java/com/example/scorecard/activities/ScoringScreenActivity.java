@@ -1,4 +1,4 @@
-package com.example.scorecard;
+package com.example.scorecard.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.scorecard.constants.CommonConstants;
+import com.example.scorecard.R;
 import com.example.scorecard.models.CricketScorePerBall;
 import com.example.scorecard.models.CricketTeammate;
 import com.example.scorecard.models.MatchDetails;

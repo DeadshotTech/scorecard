@@ -1,6 +1,6 @@
 package com.example.scorecard.utilities;
 
-import com.example.scorecard.CommonConstants;
+import com.example.scorecard.constants.CommonConstants;
 import com.example.scorecard.models.CricketTeammate;
 
 public class BowlerUtility {

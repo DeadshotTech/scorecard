@@ -12,19 +12,19 @@
         android:theme="@style/Theme.ScoreCard"
         tools:targetApi="31">
         <activity
-            android:name=".ScoringScreenActivity"
+            android:name=".activities.ScoringScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".ScorecardActivity"
+            android:name=".activities.ScorecardActivity"
             android:exported="false" />
         <activity
-            android:name=".AllMatchesListActivity"
+            android:name=".activities.AllMatchesListActivity"
             android:exported="false" />
         <activity
-            android:name=".RecordGameActivity"
+            android:name=".activities.RecordGameActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".activities.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

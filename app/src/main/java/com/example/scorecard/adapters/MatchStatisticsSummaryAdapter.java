@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scorecard.CommonConstants;
+import com.example.scorecard.constants.CommonConstants;
 import com.example.scorecard.R;
-import com.example.scorecard.ScorecardActivity;
+import com.example.scorecard.activities.ScorecardActivity;
 import com.example.scorecard.models.MatchDetails;
 
 import java.util.List;

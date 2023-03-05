@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.scorecard.utilities.BatsmanUtility;
-import com.example.scorecard.CommonConstants;
+import com.example.scorecard.constants.CommonConstants;
 import com.example.scorecard.R;
 import com.example.scorecard.models.CricketTeammate;
 

@@ -1,4 +1,4 @@
-package com.example.scorecard;
+package com.example.scorecard.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.scorecard.constants.CommonConstants;
+import com.example.scorecard.R;
 import com.example.scorecard.adapters.MatchStatisticsSummaryAdapter;
 import com.example.scorecard.models.MatchDetails;
 import com.google.firebase.database.DataSnapshot;

@@ -1,6 +1,6 @@
 package com.example.scorecard.models;
 
-import com.example.scorecard.CommonConstants;
+import com.example.scorecard.constants.CommonConstants;
 
 import java.io.Serializable;
 import java.util.Objects;

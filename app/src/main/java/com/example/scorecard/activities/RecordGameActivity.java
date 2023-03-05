@@ -1,4 +1,4 @@
-package com.example.scorecard;
+package com.example.scorecard.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.scorecard.constants.CommonConstants;
+import com.example.scorecard.R;
 import com.example.scorecard.adapters.TeammateAdditionDetailsAdapter;
 import com.example.scorecard.models.CricketTeammate;
 import com.example.scorecard.models.MatchDetails;
