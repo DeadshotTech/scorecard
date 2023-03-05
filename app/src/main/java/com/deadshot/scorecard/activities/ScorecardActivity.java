@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +18,6 @@ import com.deadshot.scorecard.adapters.PlayerBallingScoreCardAdapter;
 import com.deadshot.scorecard.models.CricketTeammate;
 import com.deadshot.scorecard.models.MatchDetails;
 import com.deadshot.scorecard.models.adapter.PlayerScorecard;
-import com.deadshot.scorecard.utilities.BallerUtility;
 import com.deadshot.scorecard.utilities.CommonUtility;
 
 import java.util.ArrayList;
@@ -58,6 +59,8 @@ public class ScorecardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setUpTeamBattingScoreCardForTeamB();
                 setUpTeamBallingScoreCardForTeamA();
+                markActiveTeamAsClicked(view);
+                markInactiveTeamAsUnClicked(findViewById(R.id.scorecard_team_a_controller));
             }
         });
     }
@@ -70,8 +73,19 @@ public class ScorecardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setUpTeamBattingScoreCardForTeamA();
                 setUpTeamBallingScoreCardForTeamB();
+                markActiveTeamAsClicked(view);
+                markInactiveTeamAsUnClicked(findViewById(R.id.scorecard_team_b_controller));
             }
         });
+    }
+
+    private void markInactiveTeamAsUnClicked(View view) {
+//        TODO: Change this to get a default color
+        view.setBackgroundColor(Color.parseColor("#000000"));
+    }
+
+    private void markActiveTeamAsClicked(View view) {
+        view.setBackgroundResource(R.drawable.border);
     }
 
     private void setupViews() {
@@ -224,10 +238,19 @@ public class ScorecardActivity extends AppCompatActivity {
 
         String teamAScore = matchDetails.getTeamARuns() +
                 CommonConstants.SCORE_SEPERATOR +
-                matchDetails.getTeamAWickets();
+                matchDetails.getTeamAWickets() +
+                CommonConstants.SINGLE_SPACE +
+                CommonConstants.LEFT_BRACKET +
+                CommonUtility.getOvers(matchDetails.getTeamBBallsBalled()) +
+                CommonConstants.RIGHT_BRACKET;
+
         String teamBScore = matchDetails.getTeamBRuns() +
                 CommonConstants.SCORE_SEPERATOR +
-                matchDetails.getTeamBWickets();
+                matchDetails.getTeamBWickets() +
+                CommonConstants.SINGLE_SPACE +
+                CommonConstants.LEFT_BRACKET +
+                CommonUtility.getOvers(matchDetails.getTeamABallsBalled()) +
+                CommonConstants.RIGHT_BRACKET;
 
         TextView tvTeamAName = findViewById(R.id.scorecard_team_a_name);
         TextView tvTeamBName = findViewById(R.id.scorecard_team_b_name);

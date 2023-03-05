@@ -21,7 +21,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="2"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/border">
 
             <TextView
                 android:id="@+id/scorecard_team_a_name"
