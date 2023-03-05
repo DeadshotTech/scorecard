@@ -113,7 +113,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scorecard_player_batting_stats"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
+            android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <TextView
@@ -126,7 +126,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scorecard_player_balling_stats"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
+            android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <Button

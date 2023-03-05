@@ -1,5 +1,6 @@
 package com.deadshot.scorecard.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class PlayerBallingScoreCardAdapter extends RecyclerView.Adapter<PlayerBa
         CricketTeammate playerInfo = mData.get(position);
         String economy = BallerUtility.getBallerEconomy(playerInfo);
         String overs = BallerUtility.getBallerOvers(playerInfo);
+        Log.i(CommonConstants.INFO_LOG_TAG, "Baller stats: " + playerInfo.toString());
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
         holder.tvPlayerOvers.setText(overs);
