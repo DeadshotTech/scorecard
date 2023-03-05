@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.scorecard'
+    namespace 'com.deadshot.scorecard'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.scorecard"
+        applicationId "com.deadshot.scorecard"
         minSdk 26
         targetSdk 33
         versionCode 1

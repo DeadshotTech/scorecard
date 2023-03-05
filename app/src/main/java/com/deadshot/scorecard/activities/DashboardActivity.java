@@ -1,4 +1,4 @@
-package com.example.scorecard;
+package com.deadshot.scorecard.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.deadshot.scorecard.R;
+
 public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard_activity_layout);
+        setContentView(R.layout.activity_dashboard_layout);
 
         configureOnClickListeners();
 

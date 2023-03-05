@@ -1,4 +1,4 @@
-package com.example.scorecard;
+package com.deadshot.scorecard;
 
 import org.junit.Test;
 

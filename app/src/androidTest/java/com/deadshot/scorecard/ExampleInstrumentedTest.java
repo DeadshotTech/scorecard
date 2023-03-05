@@ -1,4 +1,4 @@
-package com.example.scorecard;
+package com.deadshot.scorecard;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.scorecard", appContext.getPackageName());
+        assertEquals("com.deadshot.scorecard", appContext.getPackageName());
     }
 }

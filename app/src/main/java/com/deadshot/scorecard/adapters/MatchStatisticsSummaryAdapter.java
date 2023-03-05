@@ -1,4 +1,4 @@
-package com.example.scorecard.adapters;
+package com.deadshot.scorecard.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scorecard.CommonConstants;
-import com.example.scorecard.R;
-import com.example.scorecard.ScorecardActivity;
-import com.example.scorecard.models.MatchDetails;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.activities.ScorecardActivity;
+import com.deadshot.scorecard.models.MatchDetails;
 
 import java.util.List;
 

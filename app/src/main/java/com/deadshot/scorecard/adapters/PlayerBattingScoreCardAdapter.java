@@ -1,4 +1,4 @@
-package com.example.scorecard.adapters;
+package com.deadshot.scorecard.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scorecard.CommonConstants;
-import com.example.scorecard.R;
-import com.example.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.utilities.BatsmanUtility;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.models.CricketTeammate;
 
 import java.util.List;
 
@@ -43,17 +44,14 @@ public class PlayerBattingScoreCardAdapter extends RecyclerView.Adapter<PlayerBa
     public void onBindViewHolder(PlayerBattingScoreCardAdapter.ViewHolder holder, int position) {
 
         CricketTeammate playerInfo = mData.get(position);
-        double strikeRate = 0;
-        strikeRate = (playerInfo.getBallsPlayed() > 0) ?
-                (((double) playerInfo.getRunsScored()) / ((double) playerInfo.getBallsPlayed())) :
-                0;
+        String strikeRate = BatsmanUtility.getBatsmanStrikeRate(playerInfo);
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
         holder.tvPlayerRuns.setText(playerInfo.getRunsScored() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerBalls.setText(playerInfo.getBallsPlayed() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerFours.setText(playerInfo.getFoursScored() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerSixes.setText(playerInfo.getSixesScored() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerStrikeRate.setText(strikeRate + CommonConstants.EMPTY_STRING);
+        holder.tvPlayerStrikeRate.setText(strikeRate);
 
     }
 

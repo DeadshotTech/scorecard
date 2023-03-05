@@ -1,19 +1,26 @@
-package com.example.scorecard;
+package com.deadshot.scorecard.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.scorecard.adapters.TeammateAdditionDetailsAdapter;
-import com.example.scorecard.models.CricketTeammate;
-import com.example.scorecard.models.MatchDetails;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.adapters.TeammateAdditionDetailsAdapter;
+import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.models.MatchDetails;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,8 +96,27 @@ public class RecordGameActivity extends AppCompatActivity {
                 List<CricketTeammate> teamATeammates = teamATeammateAdditionDetailsAdapter.getAdapterData();
                 List<CricketTeammate> teamBTeammates = teamBTeammateAdditionDetailsAdapter.getAdapterData();
 
-                MatchDetails matchDetails = new MatchDetails(teamAName, teamBName,
-                        dateOfMatch, 0, 0, 0, 0, teamATeammates, teamBTeammates);
+//                TODO: Remove after having toss
+                CricketTeammate activeBatsmanA = teamATeammates.get(0);
+                activeBatsmanA.setActiveBatsman(true);
+                teamATeammates.set(0, activeBatsmanA);
+                CricketTeammate activeBatsmanB = teamATeammates.get(1);
+                activeBatsmanB.setActiveBatsman(true);
+                teamATeammates.set(1, activeBatsmanB);
+                CricketTeammate activeBaller = teamBTeammates.get(0);
+                activeBaller.setActiveBaller(true);
+                teamBTeammates.set(0, activeBaller);
+
+                MatchDetails matchDetails = new MatchDetails();
+                matchDetails.setTeamAName(teamAName);
+                matchDetails.setTeamBName(teamBName);
+                matchDetails.setDateOfMatch(dateOfMatch);
+                matchDetails.setTeamATeammates(teamATeammates);
+                matchDetails.setTeamBTeammates(teamBTeammates);
+
+//                TODO: Shift to the stage of having toss.
+
+                matchDetails.setActiveBattingTeam(CommonConstants.TEAM_A);
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                         .getReference(CommonConstants.GAME_DATABASE);
@@ -99,7 +125,22 @@ public class RecordGameActivity extends AppCompatActivity {
                         .child(groupName)
                         .child(dateOfMatchKey)
                         .push()
-                        .setValue(matchDetails);
+                        .setValue(matchDetails, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                if (error == null) {
+                                    // Data was written successfully
+                                    String path = ref.getPath().toString();
+                                    Log.d(CommonConstants.INFO_LOG_TAG, "Data written to path: " + path);
+                                    Intent intent = new Intent(RecordGameActivity.this, ScoringScreenActivity.class);
+                                    intent.putExtra(CommonConstants.MATCH_DETAILS_RECORD_DETAILS_REFERENCE, path);
+                                    startActivity(intent);
+                                } else {
+                                    // An error occurred while writing the data
+                                    Log.e(CommonConstants.ERROR_LOG_TAG, "Error writing data: " + error.getMessage());
+                                }
+                            }
+                        });
 
 //                saveNewGameInfo(groupName, teamAName, teamBName, dateOfMatch, teamATeammates, teamBTeammates);
 
@@ -121,7 +162,8 @@ public class RecordGameActivity extends AppCompatActivity {
                 EditText tvNewTeammateName = (EditText) findViewById(R.id.new_team_a_teammate);
                 String playerName = tvNewTeammateName.getText().toString();
                 tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
-                CricketTeammate teammateDetails = new CricketTeammate(playerName);
+                CricketTeammate teammateDetails = new CricketTeammate();
+                teammateDetails.setPlayerName(playerName);
 
                 teamATeammateAdditionDetailsAdapter.addAdapterData(teammateDetails);
                 teamATeammateAdditionDetailsAdapter.notifyItemInserted(teamATeammateAdditionDetailsAdapter.getItemCount());
@@ -143,7 +185,8 @@ public class RecordGameActivity extends AppCompatActivity {
                 EditText tvNewTeammateName = (EditText) findViewById(R.id.new_team_b_teammate);
                 String playerName = tvNewTeammateName.getText().toString();
                 tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
-                CricketTeammate teammateDetails = new CricketTeammate(playerName);
+                CricketTeammate teammateDetails = new CricketTeammate();
+                teammateDetails.setPlayerName(playerName);
 
                 teamBTeammateAdditionDetailsAdapter.addAdapterData(teammateDetails);
                 teamBTeammateAdditionDetailsAdapter.notifyItemInserted(teamBTeammateAdditionDetailsAdapter.getItemCount());

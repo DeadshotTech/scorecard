@@ -1,4 +1,4 @@
-package com.example.scorecard.adapters;
+package com.deadshot.scorecard.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,16 +7,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scorecard.CommonConstants;
-import com.example.scorecard.R;
-import com.example.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.constants.CommonConstants;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.utilities.BallerUtility;
 
 import java.util.List;
 
-public class PlayerBowlingScoreCardAdapter extends RecyclerView.Adapter<PlayerBowlingScoreCardAdapter.ViewHolder> {
+public class PlayerBallingScoreCardAdapter extends RecyclerView.Adapter<PlayerBallingScoreCardAdapter.ViewHolder> {
     private List<CricketTeammate> mData;
 
-    public PlayerBowlingScoreCardAdapter(List<CricketTeammate> data) {
+    public PlayerBallingScoreCardAdapter(List<CricketTeammate> data) {
         mData = data;
     }
 
@@ -33,31 +34,25 @@ public class PlayerBowlingScoreCardAdapter extends RecyclerView.Adapter<PlayerBo
     }
 
     @Override
-    public PlayerBowlingScoreCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlayerBallingScoreCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.player_batting_scorecard_layout, parent, false);
-        return new PlayerBowlingScoreCardAdapter.ViewHolder(view);
+        return new PlayerBallingScoreCardAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(PlayerBowlingScoreCardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(PlayerBallingScoreCardAdapter.ViewHolder holder, int position) {
 
         CricketTeammate playerInfo = mData.get(position);
-        double economy = 0;
-        economy = (playerInfo.getBallsPlayed() > 0) ?
-                (((double) playerInfo.getRunsScored()) / ((double) playerInfo.getBallsPlayed())) :
-                0;
-        String overs = "";
-        overs = (playerInfo.getBallsBowled() > 0) ?
-                (playerInfo.getBallsBowled()/6) + "." + (playerInfo.getBallsBowled()%6) :
-                (0 + CommonConstants.EMPTY_STRING);
+        String economy = BallerUtility.getBallerEconomy(playerInfo);
+        String overs = BallerUtility.getBallerOvers(playerInfo);
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
         holder.tvPlayerOvers.setText(overs);
         holder.tvPlayerMaidens.setText(playerInfo.getMaidensConceded() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerRunsConceded.setText(playerInfo.getRunsConceded() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerWickets.setText(playerInfo.getWicketsTaken() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerEconomy.setText(economy + CommonConstants.EMPTY_STRING);
+        holder.tvPlayerEconomy.setText(economy);
 
     }
 

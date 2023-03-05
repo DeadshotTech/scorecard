@@ -1,4 +1,4 @@
-package com.example.scorecard.adapters;
+package com.deadshot.scorecard.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scorecard.R;
-import com.example.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.R;
+import com.deadshot.scorecard.models.CricketTeammate;
 
 import java.util.List;
 
