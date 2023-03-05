@@ -12,7 +12,7 @@ public class BatsmanUtility {
                         * CommonConstants.HUNDRED)) /
                         ((double) playerInfo.getBallsPlayed())) :
                 0;
-        return CommonUtility.round(strikeRate, CommonConstants.TWO) + CommonConstants.EMPTY_STRING;
+        return CommonUtility.round(strikeRate, CommonConstants.ONE) + CommonConstants.EMPTY_STRING;
     }
 
 }
