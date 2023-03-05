@@ -27,6 +27,55 @@ public class CricketTeammate implements Serializable {
     private boolean isViceCaptain;
     private boolean isActiveBatsman;
     private boolean isActiveBowler;
+    private int extrasConceded;
+
+    @Override
+    public String toString() {
+        return "CricketTeammate{" +
+                "playerName='" + playerName + '\'' +
+                ", age='" + age + '\'' +
+                ", runsScored=" + runsScored +
+                ", ballsPlayed=" + ballsPlayed +
+                ", ballsBowled=" + ballsBowled +
+                ", runsConceded=" + runsConceded +
+                ", foursScored=" + foursScored +
+                ", sixesScored=" + sixesScored +
+                ", byesConceded=" + byesConceded +
+                ", legByesConceded=" + legByesConceded +
+                ", widesConceded=" + widesConceded +
+                ", noBallsConceded=" + noBallsConceded +
+                ", wicketsTaken=" + wicketsTaken +
+                ", maidensConceded=" + maidensConceded +
+                ", catchesTaken=" + catchesTaken +
+                ", isWicketKeeper=" + isWicketKeeper +
+                ", isCaptain=" + isCaptain +
+                ", isViceCaptain=" + isViceCaptain +
+                ", isActiveBatsman=" + isActiveBatsman +
+                ", isActiveBowler=" + isActiveBowler +
+                ", extrasConceded=" + extrasConceded +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CricketTeammate that = (CricketTeammate) o;
+        return runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBowled == that.ballsBowled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBowler == that.isActiveBowler && extrasConceded == that.extrasConceded && Objects.equals(playerName, that.playerName) && Objects.equals(age, that.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName, age, runsScored, ballsPlayed, ballsBowled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBowler, extrasConceded);
+    }
+
+    public int getExtrasConceded() {
+        return extrasConceded;
+    }
+
+    public void setExtrasConceded(int extrasConceded) {
+        this.extrasConceded = extrasConceded;
+    }
 
     public CricketTeammate() {
 
@@ -219,42 +268,4 @@ public class CricketTeammate implements Serializable {
         isActiveBowler = activeBowler;
     }
 
-    @Override
-    public String toString() {
-        return "CricketTeammate{" +
-                "playerName='" + playerName + '\'' +
-                ", age='" + age + '\'' +
-                ", runsScored=" + runsScored +
-                ", ballsPlayed=" + ballsPlayed +
-                ", ballsBowled=" + ballsBowled +
-                ", runsConceded=" + runsConceded +
-                ", foursScored=" + foursScored +
-                ", sixesScored=" + sixesScored +
-                ", byesConceded=" + byesConceded +
-                ", legByesConceded=" + legByesConceded +
-                ", widesConceded=" + widesConceded +
-                ", noBallsConceded=" + noBallsConceded +
-                ", wicketsTaken=" + wicketsTaken +
-                ", maidensConceded=" + maidensConceded +
-                ", catchesTaken=" + catchesTaken +
-                ", isWicketKeeper=" + isWicketKeeper +
-                ", isCaptain=" + isCaptain +
-                ", isViceCaptain=" + isViceCaptain +
-                ", isActiveBatsman=" + isActiveBatsman +
-                ", isActiveBowler=" + isActiveBowler +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CricketTeammate that = (CricketTeammate) o;
-        return runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBowled == that.ballsBowled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBowler == that.isActiveBowler && playerName.equals(that.playerName) && Objects.equals(age, that.age);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(playerName, age, runsScored, ballsPlayed, ballsBowled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBowler);
-    }
 }

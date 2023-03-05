@@ -86,17 +86,48 @@ public class ScoringScreenActivity extends AppCompatActivity {
         addRunsToActiveBowler(cricketScorePerBall);
         addRunsToActiveBattingTeam(cricketScorePerBall);
         addBallsToActiveBowlingTeam(cricketScorePerBall);
+//        Should not be required as the extras things have been handled in the individual function
+//        addExtras(cricketScorePerBall);
+//        TODO: updateActivePlayer logic should be added here to move players around
         updateFirebaseData();
+    }
+
+    private void addExtras(CricketScorePerBall cricketScorePerBall) {
+
+        if(cricketScorePerBall.isLegBye()){
+            activeBowler.setLegByesConceded(activeBowler.getLegByesConceded() + cricketScorePerBall.getExtraRuns());
+        }else if(cricketScorePerBall.isBye()){
+            activeBowler.setByesConceded(activeBowler.getByesConceded() + cricketScorePerBall.getExtraRuns());
+        }
     }
 
     private void addBallsToActiveBowlingTeam(CricketScorePerBall cricketScorePerBall) {
 
+//        TODO: Add details to scorecard is pending. Will require changes in MatchDetails as ballsBowled, wickets taken should be updated
     }
 
     private void addRunsToActiveBowler(CricketScorePerBall cricketScorePerBall) {
 
         activeBowler.setBallsBowled(activeBowler.getBallsBowled() + cricketScorePerBall.getBallsToAdd());
         activeBowler.setRunsConceded(activeBowler.getRunsConceded() + cricketScorePerBall.getRunsToAdd());
+        activeBowler.setExtrasConceded(activeBowler.getExtrasConceded() + cricketScorePerBall.getExtraRuns());
+        activeBowler.setLegByesConceded(cricketScorePerBall.isLegBye() ?
+                activeBowler.getLegByesConceded() + CommonConstants.ONE :
+                activeBowler.getLegByesConceded());
+        activeBowler.setByesConceded(cricketScorePerBall.isBye() ?
+                activeBowler.getByesConceded() + CommonConstants.ONE :
+                activeBowler.getByesConceded());
+        activeBowler.setWidesConceded(cricketScorePerBall.isWide() ?
+                activeBowler.getWidesConceded() + CommonConstants.ONE :
+                activeBowler.getWidesConceded());
+        activeBowler.setNoBallsConceded(cricketScorePerBall.isNoBall() ?
+                activeBowler.getNoBallsConceded() + CommonConstants.ONE :
+                activeBowler.getNoBallsConceded());
+        if(cricketScorePerBall.isBold() ||
+                cricketScorePerBall.isLbw() ||
+                cricketScorePerBall.isCatch()){
+            activeBowler.setWicketsTaken(activeBowler.getWicketsTaken() + CommonConstants.ONE);
+        }
 
     }
 
@@ -126,6 +157,8 @@ public class ScoringScreenActivity extends AppCompatActivity {
                 cricketScorePerBall.getRunsToAdd());
         activeBatsman.setSixesScored(activeBatsman.getSixesScored() +
                 (cricketScorePerBall.isSix() ? CommonConstants.ONE : CommonConstants.ZERO));
+        activeBatsman.setFoursScored(activeBatsman.getFoursScored() +
+                (cricketScorePerBall.isFour() ? CommonConstants.ONE : CommonConstants.ZERO));
         activeBatsman.setBallsPlayed(activeBatsman.getBallsPlayed() +
                 cricketScorePerBall.getBallsToAdd());
 
@@ -135,112 +168,193 @@ public class ScoringScreenActivity extends AppCompatActivity {
     }
 
     private void configureFiveRunsOnClickListener() {
-        TextView tvSixRunsScored = findViewById(R.id.scoring_screen_score_five);
-        tvSixRunsScored.setOnClickListener(new View.OnClickListener() {
+        TextView tvFiveRunsScored = findViewById(R.id.scoring_screen_score_five);
+        tvFiveRunsScored.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
                 cricketScorePerBall.setRunsToAdd(CommonConstants.FIVE);
                 cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
-                cricketScorePerBall.setSix(false);
                 addRunsToScorecard(cricketScorePerBall);
             }
         });
     }
 
     private void configureFourRunsOnClickListener() {
-        TextView tvSixRunsScored = findViewById(R.id.scoring_screen_score_four);
-        tvSixRunsScored.setOnClickListener(new View.OnClickListener() {
+        TextView tvFourRunsScored = findViewById(R.id.scoring_screen_score_four);
+        tvFourRunsScored.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
                 cricketScorePerBall.setRunsToAdd(CommonConstants.FOUR);
                 cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
-                cricketScorePerBall.setSix(false);
                 addRunsToScorecard(cricketScorePerBall);
             }
         });
     }
 
     private void configureThreeRunsOnClickListener() {
-        TextView tvSixRunsScored = findViewById(R.id.scoring_screen_score_three);
-        tvSixRunsScored.setOnClickListener(new View.OnClickListener() {
+        TextView tvThreeRunsScored = findViewById(R.id.scoring_screen_score_three);
+        tvThreeRunsScored.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
                 cricketScorePerBall.setRunsToAdd(CommonConstants.THREE);
                 cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
-                cricketScorePerBall.setSix(false);
                 addRunsToScorecard(cricketScorePerBall);
             }
         });
     }
 
     private void configureTwoRunsOnClickListener() {
-        TextView tvSixRunsScored = findViewById(R.id.scoring_screen_score_two);
-        tvSixRunsScored.setOnClickListener(new View.OnClickListener() {
+        TextView tvTwoRunsScored = findViewById(R.id.scoring_screen_score_two);
+        tvTwoRunsScored.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
                 cricketScorePerBall.setRunsToAdd(CommonConstants.TWO);
                 cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
-                cricketScorePerBall.setSix(false);
                 addRunsToScorecard(cricketScorePerBall);
             }
         });
     }
 
     private void configureOneRunsOnClickListener() {
-        TextView tvSixRunsScored = findViewById(R.id.scoring_screen_score_one);
-        tvSixRunsScored.setOnClickListener(new View.OnClickListener() {
+        TextView tvOneRunsScored = findViewById(R.id.scoring_screen_score_one);
+        tvOneRunsScored.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
                 cricketScorePerBall.setRunsToAdd(CommonConstants.ONE);
                 cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
-                cricketScorePerBall.setSix(false);
                 addRunsToScorecard(cricketScorePerBall);
             }
         });
     }
 
     private void configureZeroRunsOnClickListener() {
-        TextView tvSixRunsScored = findViewById(R.id.scoring_screen_score_zero);
-        tvSixRunsScored.setOnClickListener(new View.OnClickListener() {
+        TextView tvZeroRunsScored = findViewById(R.id.scoring_screen_score_zero);
+        tvZeroRunsScored.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
-                cricketScorePerBall.setRunsToAdd(CommonConstants.ZERO);
                 cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
-                cricketScorePerBall.setSix(false);
                 addRunsToScorecard(cricketScorePerBall);
             }
         });
     }
 
     private void configureLegByeOnClickListener() {
+        TextView tvLegBye = findViewById(R.id.scoring_screen_score_lb);
+        tvLegBye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+                cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
+//                TODO: New buttons need to be added to get the runs to be added
+                cricketScorePerBall.setExtraRuns(CommonConstants.ONE);
+                cricketScorePerBall.setLegBye(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureByeOnClickListener() {
+        TextView tvByes = findViewById(R.id.scoring_screen_score_bye);
+        tvByes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+                cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
+//                TODO: New buttons need to be added to get the runs to be added
+                cricketScorePerBall.setExtraRuns(CommonConstants.ONE);
+                cricketScorePerBall.setBye(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureNoOnClickListener() {
+        TextView tvNoBall = findViewById(R.id.scoring_screen_score_no);
+        tvNoBall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+//                TODO: Fetch runs for user for cases where there can be dual behavior
+                cricketScorePerBall.setRunsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setNoBall(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureWideOnClickListener() {
+        TextView tvWideBall = findViewById(R.id.scoring_screen_score_wide);
+        tvWideBall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+//                TODO: New buttons need to be added to get the runs to be added
+                cricketScorePerBall.setExtraRuns(CommonConstants.ONE);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureRunOutOnClickListener() {
+        TextView tvRunOut = findViewById(R.id.scoring_screen_score_run_out);
+        tvRunOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+//                TODO: Fetch runs for user for cases where there can be dual behavior
+                cricketScorePerBall.setRunsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setRunOut(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureCatchOnClickListener() {
+        TextView tvCatchOut = findViewById(R.id.scoring_screen_score_catch);
+        tvCatchOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+//                TODO: Fetch runs for user for cases where there can be dual behavior
+                cricketScorePerBall.setRunsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setCatch(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureLbwOnClickListener() {
+        TextView tvLbw = findViewById(R.id.scoring_screen_score_lbw);
+        tvLbw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+                cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setLbw(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
     }
 
     private void configureBoldOnClickListener() {
-
+        TextView tvBold = findViewById(R.id.scoring_screen_score_bold);
+        tvBold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CricketScorePerBall cricketScorePerBall = new CricketScorePerBall();
+                cricketScorePerBall.setBallsToAdd(CommonConstants.ONE);
+                cricketScorePerBall.setBold(true);
+                addRunsToScorecard(cricketScorePerBall);
+            }
+        });
 
     }
 
