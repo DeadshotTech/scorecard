@@ -7,6 +7,10 @@ public class CommonConstants {
     public static final String GAME_DATABASE = "all_games_records";
     public static final String CRICKET_DATABASE = "cricket_games_record";
     public static final String SCORE_SEPERATOR = "/";
+    public static final String LEFT_BRACKET = "(";
+    public static final String RIGHT_BRACKET = ")";
+    public static final String SINGLE_SPACE = " ";
+    public static final String DOT_SEPERATOR = ".";
     public static final String WARNING_LOG_TAG = "SCORECARD_WARNING";
     public static final String ERROR_LOG_TAG = "SCORECARD_ERROR";
     public static final String INFO_LOG_TAG = "SCORECARD_INFO";
@@ -31,4 +35,7 @@ public class CommonConstants {
     public static final String SIXES_HEADER = "6s";
     public static final String STRIKE_RATE_HEADER = "S/R";
     public static final String BALLS_HEADER = "B";
+    public static final String BALLER_HEADER = "Bowlers";
+    public static final String BATTER_HEADER = "Batters";
+    public static final String RUN_RATE_HEADER = "RR";
 }

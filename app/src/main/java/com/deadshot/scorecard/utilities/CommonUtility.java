@@ -2,6 +2,7 @@ package com.deadshot.scorecard.utilities;
 
 import com.deadshot.scorecard.constants.CommonConstants;
 import com.deadshot.scorecard.models.CricketTeammate;
+import com.deadshot.scorecard.models.MatchDetails;
 import com.deadshot.scorecard.models.adapter.PlayerScorecard;
 
 import java.util.ArrayList;
@@ -32,5 +33,17 @@ public class CommonUtility {
             playerScorecards.add(playerScorecard);
         }
         return playerScorecards;
+    }
+
+    public static String getTeamRunRate(int runsScored, int ballsPlayed) {
+        return CommonConstants.EMPTY_STRING + round((double)(((double) (runsScored * CommonConstants.SIX)) /
+                ((double) ballsPlayed)),
+                CommonConstants.ONE);
+    }
+
+    public static String getOvers(int ballsBalled) {
+        String overs = "";
+        overs = (ballsBalled/6) + CommonConstants.DOT_SEPERATOR + (ballsBalled%6);
+        return overs;
     }
 }

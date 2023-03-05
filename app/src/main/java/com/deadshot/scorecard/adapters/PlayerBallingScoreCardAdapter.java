@@ -45,7 +45,6 @@ public class PlayerBallingScoreCardAdapter extends RecyclerView.Adapter<PlayerBa
     public void onBindViewHolder(PlayerBallingScoreCardAdapter.ViewHolder holder, int position) {
 
         PlayerScorecard playerInfo = mData.get(position);
-        Log.i(CommonConstants.INFO_LOG_TAG, "Baller stats: " + playerInfo.toString());
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
         holder.tvPlayerOvers.setText(playerInfo.getBallerOvers());
