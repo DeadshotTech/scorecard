@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.scorecard.CommonConstants;
 import com.example.scorecard.R;
 import com.example.scorecard.models.CricketTeammate;
+import com.example.scorecard.utilities.BowlerUtility;
 
 import java.util.List;
 
@@ -43,21 +44,15 @@ public class PlayerBowlingScoreCardAdapter extends RecyclerView.Adapter<PlayerBo
     public void onBindViewHolder(PlayerBowlingScoreCardAdapter.ViewHolder holder, int position) {
 
         CricketTeammate playerInfo = mData.get(position);
-        double economy = 0;
-        economy = (playerInfo.getBallsPlayed() > 0) ?
-                (((double) playerInfo.getRunsScored()) / ((double) playerInfo.getBallsPlayed())) :
-                0;
-        String overs = "";
-        overs = (playerInfo.getBallsBowled() > 0) ?
-                (playerInfo.getBallsBowled()/6) + "." + (playerInfo.getBallsBowled()%6) :
-                (0 + CommonConstants.EMPTY_STRING);
+        String economy = BowlerUtility.getBowlerEconomy(playerInfo);
+        String overs = BowlerUtility.getBowlerOvers(playerInfo);
 
         holder.tvPlayerName.setText(playerInfo.getPlayerName());
         holder.tvPlayerOvers.setText(overs);
         holder.tvPlayerMaidens.setText(playerInfo.getMaidensConceded() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerRunsConceded.setText(playerInfo.getRunsConceded() + CommonConstants.EMPTY_STRING);
         holder.tvPlayerWickets.setText(playerInfo.getWicketsTaken() + CommonConstants.EMPTY_STRING);
-        holder.tvPlayerEconomy.setText(economy + CommonConstants.EMPTY_STRING);
+        holder.tvPlayerEconomy.setText(economy);
 
     }
 

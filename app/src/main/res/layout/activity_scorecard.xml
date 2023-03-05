@@ -129,6 +129,14 @@
             android:layout_height="0dip"
             android:layout_weight="1"/>
 
+        <Button
+            android:id="@+id/scorecard_record_game"
+            android:enabled="false"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Record Game"/>
+
     </LinearLayout>
 
 </ScrollView>

@@ -1,6 +1,9 @@
 package com.example.scorecard.models;
 
+import com.example.scorecard.CommonConstants;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class CricketTeammate implements Serializable {
     private static final long serialversionUID = 129348937L;
@@ -22,15 +25,40 @@ public class CricketTeammate implements Serializable {
     private boolean isWicketKeeper;
     private boolean isCaptain;
     private boolean isViceCaptain;
+    private boolean isActiveBatsman;
+    private boolean isActiveBowler;
 
     public CricketTeammate() {
+
+        setPlayerName(CommonConstants.EMPTY_STRING);
+        setActiveBowler(false);
+        setActiveBatsman(false);
+        setMaidensConceded(0);
+        setWicketsTaken(0);
+        setBallsBowled(0);
+        setSixesScored(0);
+        setFoursScored(0);
+        setRunsConceded(0);
+        setBallsPlayed(0);
+        setBallsBowled(0);
+        setRunsScored(0);
+        setAge(CommonConstants.EMPTY_STRING);
+        setByesConceded(0);
+        setWidesConceded(0);
+        setRunsConceded(0);
+        setLegByesConceded(0);
+        setNoBallsConceded(0);
+        setWicketKeeper(false);
+        setCaptain(false);
+        setViceCaptain(false);
+
     }
 
-    public CricketTeammate(String playerName) {
-        super();
-        this.playerName = playerName;
+    public boolean verifyIfBowlerHasBowled(){
+        return (ballsBowled > 0 ||
+                widesConceded > 0 ||
+                noBallsConceded > 0 );
     }
-
     public String getPlayerName() {
         return playerName;
     }
@@ -175,6 +203,22 @@ public class CricketTeammate implements Serializable {
         this.maidensConceded = maidensConceded;
     }
 
+    public boolean isActiveBatsman() {
+        return isActiveBatsman;
+    }
+
+    public void setActiveBatsman(boolean activeBatsman) {
+        isActiveBatsman = activeBatsman;
+    }
+
+    public boolean isActiveBowler() {
+        return isActiveBowler;
+    }
+
+    public void setActiveBowler(boolean activeBowler) {
+        isActiveBowler = activeBowler;
+    }
+
     @Override
     public String toString() {
         return "CricketTeammate{" +
@@ -196,6 +240,21 @@ public class CricketTeammate implements Serializable {
                 ", isWicketKeeper=" + isWicketKeeper +
                 ", isCaptain=" + isCaptain +
                 ", isViceCaptain=" + isViceCaptain +
+                ", isActiveBatsman=" + isActiveBatsman +
+                ", isActiveBowler=" + isActiveBowler +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CricketTeammate that = (CricketTeammate) o;
+        return runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBowled == that.ballsBowled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBowler == that.isActiveBowler && playerName.equals(that.playerName) && Objects.equals(age, that.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName, age, runsScored, ballsPlayed, ballsBowled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBowler);
     }
 }

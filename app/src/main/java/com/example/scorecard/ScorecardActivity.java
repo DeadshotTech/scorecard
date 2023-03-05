@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import com.example.scorecard.models.MatchDetails;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ScorecardActivity extends AppCompatActivity {
 
@@ -42,6 +45,21 @@ public class ScorecardActivity extends AppCompatActivity {
 
         setupOnClickListenersForTeamA();
         setupOnClickListenersForTeamB();
+        setupOnClickListenersForRecordGame();
+    }
+
+    private void setupOnClickListenersForRecordGame() {
+
+        Button bnRecordGame = findViewById(R.id.scorecard_record_game);
+        bnRecordGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                TODO: Extra bundles to indicate path of the game should be passed before enabling it.
+                Intent intent = new Intent(ScorecardActivity.this, ScoringScreenActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -52,7 +70,7 @@ public class ScorecardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setUpTeamBattingScoreCardForTeamB();
-                setUpTeamBowlingScoreCardForTeamB();
+                setUpTeamBowlingScoreCardForTeamA();
             }
         });
     }
@@ -64,7 +82,7 @@ public class ScorecardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setUpTeamBattingScoreCardForTeamA();
-                setUpTeamBowlingScoreCardForTeamA();
+                setUpTeamBowlingScoreCardForTeamB();
             }
         });
     }
@@ -87,14 +105,17 @@ public class ScorecardActivity extends AppCompatActivity {
         rvPlayerBowlingScorecard.setAdapter(playerBowlingScoreCardAdapter);
         rvPlayerBowlingScorecard.setLayoutManager(new LinearLayoutManager(this));
 
-        setUpTeamBowlingScoreCardForTeamA();
+        setUpTeamBowlingScoreCardForTeamB();
     }
 
     private void setUpTeamBowlingScoreCardForTeamA() {
 
         List<CricketTeammate> teamABowlingScorecard = new ArrayList<>();
         teamABowlingScorecard.add(getHeaderDataForBowlingScorecard());
-        teamABowlingScorecard.addAll(matchDetails.getTeamATeammates());
+        teamABowlingScorecard.addAll(matchDetails.getTeamATeammates()
+                .stream()
+                .filter(CricketTeammate::verifyIfBowlerHasBowled)
+                .collect(Collectors.toList()));
         playerBowlingScoreCardAdapter.setAdapterData(teamABowlingScorecard);
         playerBowlingScoreCardAdapter.notifyDataSetChanged();
 
@@ -104,7 +125,11 @@ public class ScorecardActivity extends AppCompatActivity {
 
         List<CricketTeammate> teamBBowlingScorecard = new ArrayList<>();
         teamBBowlingScorecard.add(getHeaderDataForBowlingScorecard());
-        teamBBowlingScorecard.addAll(matchDetails.getTeamBTeammates());
+        teamBBowlingScorecard.addAll(
+                matchDetails.getTeamBTeammates()
+                .stream()
+                        .filter(CricketTeammate::verifyIfBowlerHasBowled)
+                        .collect(Collectors.toList()));
         playerBowlingScoreCardAdapter.setAdapterData(teamBBowlingScorecard);
         playerBowlingScoreCardAdapter.notifyDataSetChanged();
 

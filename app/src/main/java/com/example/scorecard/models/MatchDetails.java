@@ -1,6 +1,10 @@
 package com.example.scorecard.models;
 
+import com.example.scorecard.CommonConstants;
+import com.google.android.gms.common.internal.service.Common;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatchDetails implements Serializable {
@@ -14,21 +18,22 @@ public class MatchDetails implements Serializable {
     private int teamBWickets;
     List<CricketTeammate> teamATeammates;
     List<CricketTeammate> teamBTeammates;
+    private String activeBattingTeam;
+    private String activeBowlingTeam;
 
     public MatchDetails(){
 
-    }
+        setTeamAName(CommonConstants.EMPTY_STRING);
+        setTeamBName(CommonConstants.EMPTY_STRING);
+        setDateOfMatch(CommonConstants.EMPTY_STRING);
+        setTeamARuns(0);
+        setTeamBRuns(0);
+        setTeamAWickets(0);
+        setTeamBWickets(0);
+        setTeamATeammates(new ArrayList<>());
+        setTeamBTeammates(new ArrayList<>());
+        setActiveBattingTeam(CommonConstants.EMPTY_STRING);
 
-    public MatchDetails(String teamAName, String teamBName, String dateOfMatch, int teamARuns, int teamBRuns, int teamAWickets, int teamBWickets, List<CricketTeammate> teamATeammates, List<CricketTeammate> teamBTeammates) {
-        this.teamAName = teamAName;
-        this.teamBName = teamBName;
-        this.dateOfMatch = dateOfMatch;
-        this.teamARuns = teamARuns;
-        this.teamBRuns = teamBRuns;
-        this.teamAWickets = teamAWickets;
-        this.teamBWickets = teamBWickets;
-        this.teamATeammates = teamATeammates;
-        this.teamBTeammates = teamBTeammates;
     }
 
     public String getTeamAName() {
@@ -103,6 +108,22 @@ public class MatchDetails implements Serializable {
         this.teamBWickets = teamBWickets;
     }
 
+    public String getActiveBattingTeam() {
+        return activeBattingTeam;
+    }
+
+    public void setActiveBattingTeam(String activeBattingTeam) {
+        this.activeBattingTeam = activeBattingTeam;
+    }
+
+    public String getActiveBowlingTeam() {
+        return activeBowlingTeam;
+    }
+
+    public void setActiveBowlingTeam(String activeBowlingTeam) {
+        this.activeBowlingTeam = activeBowlingTeam;
+    }
+
     @Override
     public String toString() {
         return "MatchDetails{" +
@@ -115,6 +136,8 @@ public class MatchDetails implements Serializable {
                 ", teamBWickets=" + teamBWickets +
                 ", teamATeammates=" + teamATeammates +
                 ", teamBTeammates=" + teamBTeammates +
+                ", activeBattingTeam='" + activeBattingTeam + '\'' +
+                ", activeBowlingTeam='" + activeBowlingTeam + '\'' +
                 '}';
     }
 }

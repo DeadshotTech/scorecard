@@ -94,8 +94,27 @@ public class RecordGameActivity extends AppCompatActivity {
                 List<CricketTeammate> teamATeammates = teamATeammateAdditionDetailsAdapter.getAdapterData();
                 List<CricketTeammate> teamBTeammates = teamBTeammateAdditionDetailsAdapter.getAdapterData();
 
-                MatchDetails matchDetails = new MatchDetails(teamAName, teamBName,
-                        dateOfMatch, 0, 0, 0, 0, teamATeammates, teamBTeammates);
+//                TODO: Remove after having toss
+                CricketTeammate activeBatsmanA = teamATeammates.get(0);
+                activeBatsmanA.setActiveBatsman(true);
+                teamATeammates.set(0, activeBatsmanA);
+                CricketTeammate activeBatsmanB = teamATeammates.get(1);
+                activeBatsmanB.setActiveBatsman(true);
+                teamATeammates.set(1, activeBatsmanB);
+                CricketTeammate activeBowler = teamBTeammates.get(0);
+                activeBowler.setActiveBowler(true);
+                teamBTeammates.set(0, activeBowler);
+
+                MatchDetails matchDetails = new MatchDetails();
+                matchDetails.setTeamAName(teamAName);
+                matchDetails.setTeamBName(teamBName);
+                matchDetails.setDateOfMatch(dateOfMatch);
+                matchDetails.setTeamATeammates(teamATeammates);
+                matchDetails.setTeamBTeammates(teamBTeammates);
+
+//                TODO: Shift to the stage of having toss.
+
+                matchDetails.setActiveBattingTeam(CommonConstants.TEAM_A);
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                         .getReference(CommonConstants.GAME_DATABASE);
@@ -111,7 +130,7 @@ public class RecordGameActivity extends AppCompatActivity {
                                     // Data was written successfully
                                     String path = ref.getPath().toString();
                                     Log.d(CommonConstants.INFO_LOG_TAG, "Data written to path: " + path);
-                                    Intent intent = new Intent(RecordGameActivity.this, ScoringScreenActicity.class);
+                                    Intent intent = new Intent(RecordGameActivity.this, ScoringScreenActivity.class);
                                     intent.putExtra(CommonConstants.MATCH_DETAILS_RECORD_DETAILS_REFERENCE, path);
                                     startActivity(intent);
                                 } else {
@@ -141,7 +160,8 @@ public class RecordGameActivity extends AppCompatActivity {
                 EditText tvNewTeammateName = (EditText) findViewById(R.id.new_team_a_teammate);
                 String playerName = tvNewTeammateName.getText().toString();
                 tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
-                CricketTeammate teammateDetails = new CricketTeammate(playerName);
+                CricketTeammate teammateDetails = new CricketTeammate();
+                teammateDetails.setPlayerName(playerName);
 
                 teamATeammateAdditionDetailsAdapter.addAdapterData(teammateDetails);
                 teamATeammateAdditionDetailsAdapter.notifyItemInserted(teamATeammateAdditionDetailsAdapter.getItemCount());
@@ -163,7 +183,8 @@ public class RecordGameActivity extends AppCompatActivity {
                 EditText tvNewTeammateName = (EditText) findViewById(R.id.new_team_b_teammate);
                 String playerName = tvNewTeammateName.getText().toString();
                 tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
-                CricketTeammate teammateDetails = new CricketTeammate(playerName);
+                CricketTeammate teammateDetails = new CricketTeammate();
+                teammateDetails.setPlayerName(playerName);
 
                 teamBTeammateAdditionDetailsAdapter.addAdapterData(teammateDetails);
                 teamBTeammateAdditionDetailsAdapter.notifyItemInserted(teamBTeammateAdditionDetailsAdapter.getItemCount());
