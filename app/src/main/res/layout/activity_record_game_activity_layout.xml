@@ -49,8 +49,8 @@
                         android:id="@+id/team_a_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLines="1" />
+                        android:inputType="textCapWords"
+                        android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,8 +72,8 @@
                         android:id="@+id/team_b_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLines="1" />
+                        android:inputType="textCapWords"
+                        android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,8 +149,8 @@
                                 android:id="@+id/new_team_a_teammate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLines="1" />
+                                android:inputType="textCapWords"
+                                android:maxLines="1"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -283,8 +283,8 @@
                                 android:id="@+id/new_team_b_teammate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLines="1" />
+                                android:inputType="textCapWords"
+                                android:maxLines="1"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
