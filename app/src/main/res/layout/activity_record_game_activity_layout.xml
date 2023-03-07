@@ -166,7 +166,9 @@
                     android:layout_width="200dip"
                     android:layout_height="wrap_content"
                     android:text="Add"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#063970"/>
 
             </LinearLayout>
 
@@ -229,7 +231,9 @@
                     android:layout_width="200dip"
                     android:layout_height="wrap_content"
                     android:text="Add"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#063970"/>
 
             </LinearLayout>
 
@@ -253,7 +257,9 @@
                 android:layout_height="wrap_content"
                 android:text="Start Match"
                 android:layout_weight="1"
-                android:padding="10dip"/>
+                android:padding="10dip"
+                android:textColor="@color/white"
+                android:backgroundTint="#063970"/>
 
         </LinearLayout>
 
