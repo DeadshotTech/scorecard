@@ -6,3 +6,10 @@
         There is no option to switch between players or automatic switching.
         So scores can't be tagged to specific players.
     All Matches can be viewed and all there relevant details relating to scores can be extensively viewed.
+
+**Version 1.1**
+    Coming Up!
+    Toss added - This will allow dynamic selection of teams for adding scores - Done
+    Choose active players and active ballers for adding scores
+    Cricket match logic for switching players automatically, switching teams on match completion, runs takes, overs completed
+    Authentication to restrict creation of match by unauthorized players
