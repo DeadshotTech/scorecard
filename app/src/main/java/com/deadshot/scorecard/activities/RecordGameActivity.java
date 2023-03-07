@@ -83,7 +83,7 @@ public class RecordGameActivity extends AppCompatActivity {
         Button bnStartMatch = (Button) findViewById(R.id.start_game_button);
         TextInputEditText etTeamAName = (TextInputEditText) findViewById(R.id.team_a_name);
         TextInputEditText etTeamBName = (TextInputEditText) findViewById(R.id.team_b_name);
-        EditText etDateOfMatch = (EditText) findViewById(R.id.match_date);
+        TextInputEditText etDateOfMatch = (TextInputEditText) findViewById(R.id.match_date);
 
         bnStartMatch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,11 +160,18 @@ public class RecordGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                EditText tvNewTeammateName = (EditText) findViewById(R.id.new_team_a_teammate);
-                String playerName = tvNewTeammateName.getText().toString();
-                tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
+                TextInputEditText tvNewTeammateName = (TextInputEditText) findViewById(R.id.new_team_a_teammate);
+                TextInputEditText tvNewTeammateJerseyNumber = (TextInputEditText) findViewById(R.id.new_team_a_teammate_jersey_number);
+                TextInputEditText tvNewTeammateAge = (TextInputEditText) findViewById(R.id.new_team_a_teammate_age);
+
                 CricketTeammate teammateDetails = new CricketTeammate();
-                teammateDetails.setPlayerName(playerName);
+                teammateDetails.setPlayerName(tvNewTeammateName.getText().toString());
+                teammateDetails.setJerseyNumber(Integer.parseInt(tvNewTeammateJerseyNumber.getText().toString()));
+                teammateDetails.setAge(Integer.parseInt(tvNewTeammateAge.getText().toString()));
+
+                tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
+                tvNewTeammateJerseyNumber.setText(CommonConstants.EMPTY_STRING);
+                tvNewTeammateAge.setText(CommonConstants.EMPTY_STRING);
 
                 teamATeammateAdditionDetailsAdapter.addAdapterData(teammateDetails);
                 teamATeammateAdditionDetailsAdapter.notifyItemInserted(teamATeammateAdditionDetailsAdapter.getItemCount());

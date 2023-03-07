@@ -8,7 +8,8 @@ import java.util.Objects;
 public class CricketTeammate implements Serializable {
     private static final long serialversionUID = 129348937L;
     private String playerName;
-    private String age;
+    private int age;
+    private int jerseyNumber;
     private int runsScored;
     private int ballsPlayed;
     private int ballsBalled;
@@ -30,10 +31,24 @@ public class CricketTeammate implements Serializable {
     private int extrasConceded;
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CricketTeammate that = (CricketTeammate) o;
+        return age == that.age && jerseyNumber == that.jerseyNumber && runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBalled == that.ballsBalled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBaller == that.isActiveBaller && extrasConceded == that.extrasConceded && playerName.equals(that.playerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName, age, jerseyNumber, runsScored, ballsPlayed, ballsBalled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBaller, extrasConceded);
+    }
+
+    @Override
     public String toString() {
         return "CricketTeammate{" +
                 "playerName='" + playerName + '\'' +
-                ", age='" + age + '\'' +
+                ", age=" + age +
+                ", jerseyNumber=" + jerseyNumber +
                 ", runsScored=" + runsScored +
                 ", ballsPlayed=" + ballsPlayed +
                 ", ballsBalled=" + ballsBalled +
@@ -56,17 +71,12 @@ public class CricketTeammate implements Serializable {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CricketTeammate that = (CricketTeammate) o;
-        return runsScored == that.runsScored && ballsPlayed == that.ballsPlayed && ballsBalled == that.ballsBalled && runsConceded == that.runsConceded && foursScored == that.foursScored && sixesScored == that.sixesScored && byesConceded == that.byesConceded && legByesConceded == that.legByesConceded && widesConceded == that.widesConceded && noBallsConceded == that.noBallsConceded && wicketsTaken == that.wicketsTaken && maidensConceded == that.maidensConceded && catchesTaken == that.catchesTaken && isWicketKeeper == that.isWicketKeeper && isCaptain == that.isCaptain && isViceCaptain == that.isViceCaptain && isActiveBatsman == that.isActiveBatsman && isActiveBaller == that.isActiveBaller && extrasConceded == that.extrasConceded && Objects.equals(playerName, that.playerName) && Objects.equals(age, that.age);
+    public int getJerseyNumber() {
+        return jerseyNumber;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(playerName, age, runsScored, ballsPlayed, ballsBalled, runsConceded, foursScored, sixesScored, byesConceded, legByesConceded, widesConceded, noBallsConceded, wicketsTaken, maidensConceded, catchesTaken, isWicketKeeper, isCaptain, isViceCaptain, isActiveBatsman, isActiveBaller, extrasConceded);
+    public void setJerseyNumber(int jerseyNumber) {
+        this.jerseyNumber = jerseyNumber;
     }
 
     public int getExtrasConceded() {
@@ -91,7 +101,7 @@ public class CricketTeammate implements Serializable {
         setBallsPlayed(0);
         setBallsBalled(0);
         setRunsScored(0);
-        setAge(CommonConstants.EMPTY_STRING);
+        setAge(0);
         setByesConceded(0);
         setWidesConceded(0);
         setRunsConceded(0);
@@ -116,11 +126,11 @@ public class CricketTeammate implements Serializable {
         this.playerName = playerName;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
