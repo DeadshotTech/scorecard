@@ -44,4 +44,5 @@ public class CommonConstants {
     public static final String WINS_THE_TOSS = "\nWins the toss!";
     public static final String ACTIVE_BATTING_TEAM_FIREBASE_REFERENCE = "activeBattingTeam";
     public static final String ACTIVE_BALLING_TEAM_FIREBASE_REFERENCE = "activeBallingTeam";
+    public static final String DATE_FORMAT = "dd/MM/yyyy";
 }

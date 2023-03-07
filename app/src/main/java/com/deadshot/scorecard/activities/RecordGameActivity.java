@@ -24,7 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RecordGameActivity extends AppCompatActivity {
@@ -44,9 +46,18 @@ public class RecordGameActivity extends AppCompatActivity {
 
     private void setupViews() {
 
+        setupDefaultValues();
         configureTeamATeammatesRecyclerView();
         configureTeamBTeammatesRecyclerView();
 
+    }
+
+    private void setupDefaultValues() {
+        TextInputEditText matchDate = findViewById(R.id.match_date);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstants.DATE_FORMAT);
+        String todayDate = dateFormat.format(calendar.getTime());
+        matchDate.setText(todayDate);
     }
 
     private void configureTeamATeammatesRecyclerView() {
