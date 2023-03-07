@@ -110,6 +110,7 @@ public class TossActivity extends AppCompatActivity {
         Intent intent = new Intent(TossActivity.this, ScoringScreenActivity.class);
         intent.putExtra(CommonConstants.MATCH_DETAILS_RECORD_DETAILS_REFERENCE, matchDetailsReferencePath);
         intent.putExtra(CommonConstants.ACTIVE_BATTING_TEAM_FIREBASE_REFERENCE, activeBattingTeam);
+        intent.putExtra(CommonConstants.ACTIVE_BALLING_TEAM_FIREBASE_REFERENCE, activeBallingTeam);
         startActivity(intent);
     }
 

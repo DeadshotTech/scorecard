@@ -25,6 +25,9 @@ import java.util.List;
 public class ScoringScreenActivity extends AppCompatActivity {
 
     private static String activeBattingTeamName;
+    private static String activeBallingTeamName;
+    private static String activeBattingTeamIdentifier;
+    private static String activeBallingTeamIdentifier;
     private static List<CricketTeammate> activeBattingTeamList;
     private static List<CricketTeammate> activeBallingTeamList;
     private static CricketTeammate activeBatsmanA = null, activeBatsmanB = null, activeBaller = null;
@@ -38,6 +41,8 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            activeBattingTeamIdentifier = extras.getString(CommonConstants.ACTIVE_BATTING_TEAM_FIREBASE_REFERENCE).toString();
+            activeBallingTeamIdentifier = extras.getString(CommonConstants.ACTIVE_BALLING_TEAM_FIREBASE_REFERENCE).toString();
             matchDetailsReferencePath = extras.get(CommonConstants.MATCH_DETAILS_RECORD_DETAILS_REFERENCE).toString();
         }
 
@@ -92,12 +97,12 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
     private void addDetailsForActiveBallingTeam(CricketScorePerBall cricketScorePerBall) {
 
-        if(matchDetails.getActiveBattingTeam().equals(CommonConstants.TEAM_A)){
+        if (matchDetails.getActiveBattingTeam().equals(CommonConstants.TEAM_A)) {
             matchDetails.setTeamBExtrasConceded(matchDetails.getTeamBExtrasConceded() +
                     cricketScorePerBall.getExtraRuns());
             matchDetails.setTeamBBallsBalled(matchDetails.getTeamBBallsBalled() +
                     cricketScorePerBall.getBallsToAdd());
-        }else{
+        } else {
             matchDetails.setTeamAExtrasConceded(matchDetails.getTeamAExtrasConceded() +
                     cricketScorePerBall.getExtraRuns());
             matchDetails.setTeamABallsBalled(matchDetails.getTeamABallsBalled() +
@@ -128,12 +133,12 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
     private void addDetailsForActiveBattingTeam(CricketScorePerBall cricketScorePerBall) {
 
-        if(matchDetails.getActiveBattingTeam().equals(CommonConstants.TEAM_A)){
+        if (matchDetails.getActiveBattingTeam().equals(CommonConstants.TEAM_A)) {
             matchDetails.setTeamARuns(matchDetails.getTeamARuns() +
                     cricketScorePerBall.getRunsToAdd() +
                     cricketScorePerBall.getExtraRuns());
             matchDetails.setTeamAWickets(matchDetails.getTeamAWickets() + getWicketsToAdd(cricketScorePerBall));
-        }else{
+        } else {
             matchDetails.setTeamBRuns(matchDetails.getTeamBRuns() +
                     cricketScorePerBall.getRunsToAdd() +
                     cricketScorePerBall.getExtraRuns());
@@ -142,7 +147,7 @@ public class ScoringScreenActivity extends AppCompatActivity {
     }
 
     private int getWicketsToAdd(CricketScorePerBall cricketScorePerBall) {
-        if(cricketScorePerBall.isBold() ||
+        if (cricketScorePerBall.isBold() ||
                 cricketScorePerBall.isLbw() ||
                 cricketScorePerBall.isCatch())
             return CommonConstants.ONE;
@@ -402,38 +407,48 @@ public class ScoringScreenActivity extends AppCompatActivity {
 
     private void loadMatchScoreCardData(MatchDetails matchDetails) {
 
+        activeBattingTeamIdentifier = matchDetails.getActiveBattingTeam();
+        activeBallingTeamIdentifier = matchDetails.getActiveBallingTeam();
+
         activeBattingTeamName = matchDetails.getActiveBattingTeam();
+        activeBallingTeamName = getActiveTeamName(matchDetails.getActiveBallingTeam());
 
-//                TODO: As toss check is not added, a not nullable check is added. But this should also be handled by an exception.
-        if(activeBattingTeamName != null && activeBattingTeamName.length() > 0){
+        activeBattingTeamList = getActiveTeammates(activeBattingTeamIdentifier);
+        activeBallingTeamList = getActiveTeammates(activeBallingTeamIdentifier);
 
-            if(activeBattingTeamName.equalsIgnoreCase(CommonConstants.TEAM_A)) {
-                activeBattingTeamList = matchDetails.getTeamATeammates();
-                activeBallingTeamList = matchDetails.getTeamBTeammates();
-            }else{
-                activeBattingTeamList = matchDetails.getTeamBTeammates();
-                activeBallingTeamList = matchDetails.getTeamATeammates();
-            }
+        Log.d(ScoringScreenActivity.class.toString(), activeBattingTeamName);
+        Log.d(ScoringScreenActivity.class.toString(), activeBattingTeamList.toString());
+        activeBatsmanA = getActiveBatsman(activeBattingTeamList, null);
+        activeBatsmanB = getActiveBatsman(activeBattingTeamList, activeBatsmanA);
+        activeBaller = extractActiveBaller(activeBallingTeamList);
 
-            activeBatsmanA = getActiveBatsman(activeBattingTeamList, null);
-            activeBatsmanB = getActiveBatsman(activeBattingTeamList, activeBatsmanA);
-            activeBaller = extractActiveBaller(activeBallingTeamList);
+        setDetailsForActiveBatsmanA(activeBatsmanA);
+        setDetailsForActiveBatsmanB(activeBatsmanB);
+        setDetailsForActiveBaller(activeBaller);
 
-            setDetailsForActiveBatsmanA(activeBatsmanA);
-            setDetailsForActiveBatsmanB(activeBatsmanB);
-            setDetailsForActiveBaller(activeBaller);
+    }
 
-        }
+    private String getActiveTeamName(String teamIdentifier) {
+        return CommonConstants.TEAM_A.equals(teamIdentifier)
+                ? matchDetails.getTeamAName()
+                : matchDetails.getTeamBName();
+    }
 
+    private List<CricketTeammate> getActiveTeammates(String teamIdentifier) {
+        return CommonConstants.TEAM_A.equals(teamIdentifier)
+                ? matchDetails.getTeamATeammates()
+                : matchDetails.getTeamBTeammates();
     }
 
     private CricketTeammate getActiveBatsman(List<CricketTeammate> activeBattingTeamList, CricketTeammate existingActiveBatsman) {
 
         CricketTeammate activeBatsman = null;
 
-        for(CricketTeammate cricketTeammate : activeBattingTeamList){
-            if(cricketTeammate.isActiveBatsman() && !cricketTeammate.equals(existingActiveBatsman))
+        for (CricketTeammate cricketTeammate : activeBattingTeamList) {
+            if (existingActiveBatsman == null || !cricketTeammate.equals(existingActiveBatsman)) {
                 activeBatsman = cricketTeammate;
+                break;
+            }
         }
 
         return activeBatsman;
@@ -443,11 +458,9 @@ public class ScoringScreenActivity extends AppCompatActivity {
     private CricketTeammate extractActiveBaller(List<CricketTeammate> activeBallingTeamList) {
 
         CricketTeammate activeBaller = null;
-        for(CricketTeammate cricketTeammate : activeBallingTeamList){
-            if(cricketTeammate.isActiveBaller()) {
-                activeBaller = cricketTeammate;
-                break;
-            }
+        for (CricketTeammate cricketTeammate : activeBallingTeamList) {
+            activeBaller = cricketTeammate;
+            break;
         }
         return activeBaller;
     }
