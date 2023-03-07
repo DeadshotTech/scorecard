@@ -80,7 +80,7 @@ public class RecordGameActivity extends AppCompatActivity {
 
     private void configureStartMatchListener() {
 
-        Button bnStartMatch = (Button) findViewById(R.id.start_game_button);
+        Button bnStartMatch = (Button) findViewById(R.id.toss_button);
         TextInputEditText etTeamAName = (TextInputEditText) findViewById(R.id.team_a_name);
         TextInputEditText etTeamBName = (TextInputEditText) findViewById(R.id.team_b_name);
         TextInputEditText etDateOfMatch = (TextInputEditText) findViewById(R.id.match_date);
@@ -115,10 +115,6 @@ public class RecordGameActivity extends AppCompatActivity {
                 matchDetails.setTeamATeammates(teamATeammates);
                 matchDetails.setTeamBTeammates(teamBTeammates);
 
-//                TODO: Shift to the stage of having toss.
-
-                matchDetails.setActiveBattingTeam(CommonConstants.TEAM_A);
-
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                         .getReference(CommonConstants.GAME_DATABASE);
 
@@ -132,10 +128,13 @@ public class RecordGameActivity extends AppCompatActivity {
                                 if (error == null) {
                                     // Data was written successfully
                                     String path = ref.getPath().toString();
-                                    Log.d(CommonConstants.INFO_LOG_TAG, "Data written to path: " + path);
-                                    Intent intent = new Intent(RecordGameActivity.this, ScoringScreenActivity.class);
+
+                                    Intent intent = new Intent(RecordGameActivity.this, TossActivity.class);
                                     intent.putExtra(CommonConstants.MATCH_DETAILS_RECORD_DETAILS_REFERENCE, path);
+                                    intent.putExtra(CommonConstants.TEAM_A, matchDetails.getTeamAName());
+                                    intent.putExtra(CommonConstants.TEAM_B, matchDetails.getTeamBName());
                                     startActivity(intent);
+
                                 } else {
                                     // An error occurred while writing the data
                                     Log.e(CommonConstants.ERROR_LOG_TAG, "Error writing data: " + error.getMessage());
@@ -164,10 +163,20 @@ public class RecordGameActivity extends AppCompatActivity {
                 TextInputEditText tvNewTeammateJerseyNumber = (TextInputEditText) findViewById(R.id.new_team_a_teammate_jersey_number);
                 TextInputEditText tvNewTeammateAge = (TextInputEditText) findViewById(R.id.new_team_a_teammate_age);
 
+                String playerName = tvNewTeammateName.getText().toString();
+                String playerJerseyNumber = tvNewTeammateJerseyNumber.getText().toString();
+                String playerAge = tvNewTeammateAge.getText().toString();
+                playerJerseyNumber = playerJerseyNumber==null || playerJerseyNumber.length()==0 ?
+                        CommonConstants.ZERO + CommonConstants.EMPTY_STRING :
+                        playerJerseyNumber;
+                playerAge = playerAge==null || playerAge.length()==0 ?
+                        CommonConstants.ZERO + CommonConstants.EMPTY_STRING :
+                        playerAge;
+
                 CricketTeammate teammateDetails = new CricketTeammate();
-                teammateDetails.setPlayerName(tvNewTeammateName.getText().toString());
-                teammateDetails.setJerseyNumber(Integer.parseInt(tvNewTeammateJerseyNumber.getText().toString()));
-                teammateDetails.setAge(Integer.parseInt(tvNewTeammateAge.getText().toString()));
+                teammateDetails.setPlayerName(playerName);
+                teammateDetails.setJerseyNumber(Integer.parseInt(playerJerseyNumber));
+                teammateDetails.setAge(Integer.parseInt(playerAge));
 
                 tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
                 tvNewTeammateJerseyNumber.setText(CommonConstants.EMPTY_STRING);
@@ -190,11 +199,28 @@ public class RecordGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                EditText tvNewTeammateName = (EditText) findViewById(R.id.new_team_b_teammate);
+                TextInputEditText tvNewTeammateName = (TextInputEditText) findViewById(R.id.new_team_b_teammate);
+                TextInputEditText tvNewTeammateJerseyNumber = (TextInputEditText) findViewById(R.id.new_team_b_teammate_jersey_number);
+                TextInputEditText tvNewTeammateAge = (TextInputEditText) findViewById(R.id.new_team_b_teammate_age);
+
                 String playerName = tvNewTeammateName.getText().toString();
-                tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
+                String playerJerseyNumber = tvNewTeammateJerseyNumber.getText().toString();
+                String playerAge = tvNewTeammateAge.getText().toString();
+                playerJerseyNumber = playerJerseyNumber==null || playerJerseyNumber.length()==0 ?
+                        CommonConstants.ZERO + CommonConstants.EMPTY_STRING :
+                        playerJerseyNumber;
+                playerAge = playerAge==null || playerAge.length()==0 ?
+                        CommonConstants.ZERO + CommonConstants.EMPTY_STRING :
+                        playerAge;
+
                 CricketTeammate teammateDetails = new CricketTeammate();
                 teammateDetails.setPlayerName(playerName);
+                teammateDetails.setJerseyNumber(Integer.parseInt(playerJerseyNumber));
+                teammateDetails.setAge(Integer.parseInt(playerAge));
+
+                tvNewTeammateName.setText(CommonConstants.EMPTY_STRING);
+                tvNewTeammateJerseyNumber.setText(CommonConstants.EMPTY_STRING);
+                tvNewTeammateAge.setText(CommonConstants.EMPTY_STRING);
 
                 teamBTeammateAdditionDetailsAdapter.addAdapterData(teammateDetails);
                 teamBTeammateAdditionDetailsAdapter.notifyItemInserted(teamBTeammateAdditionDetailsAdapter.getItemCount());

@@ -386,7 +386,7 @@ public class ScoringScreenActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 matchDetails = dataSnapshot.getValue(MatchDetails.class);
-
+                Log.d(CommonConstants.INFO_LOG_TAG, matchDetails.toString());
                 loadMatchScoreCardData(matchDetails);
 
             }

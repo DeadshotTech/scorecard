@@ -14,9 +14,11 @@ public class CommonConstants {
     public static final String WARNING_LOG_TAG = "SCORECARD_WARNING";
     public static final String ERROR_LOG_TAG = "SCORECARD_ERROR";
     public static final String INFO_LOG_TAG = "SCORECARD_INFO";
+    public static final String DEBUG_LOG_TAG = "SCORECARD_DEBUG";
     public static final String MATCH_DETAILS = "MATCH_DETAILS";
     public static final String MATCH_DETAILS_RECORD_DETAILS_REFERENCE = "MATCH_DETAILS_RECORD_DETAILS_REFERENCE";
     public static final String TEAM_A = "teamA";
+    public static final String TEAM_B = "teamB";
     public static final int SIX = 6;
     public static final int FIVE = 5;
     public static final int FOUR = 4;
@@ -38,4 +40,8 @@ public class CommonConstants {
     public static final String BALLER_HEADER = "Bowlers";
     public static final String BATTER_HEADER = "Batters";
     public static final String RUN_RATE_HEADER = "RR";
+    public static final double HALF = 0.5d;
+    public static final String WINS_THE_TOSS = "\nWins the toss!";
+    public static final String ACTIVE_BATTING_TEAM_FIREBASE_REFERENCE = "activeBattingTeam";
+    public static final String ACTIVE_BALLING_TEAM_FIREBASE_REFERENCE = "activeBallingTeam";
 }
