@@ -124,6 +124,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/team_a_name_header"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Team A"
@@ -208,20 +209,19 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:layout_weight="1"
                         android:layout_margin="5dip"
                         android:layout_gravity="bottom">
 
-                        <Button
+                        <ImageView
                             android:id="@+id/add_team_a_teammates"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Add"
                             android:layout_weight="1"
-                            android:textColor="@color/white"
-                            android:backgroundTint="@color/main_theme_background_color"/>
+                            android:src="@drawable/add_icon"
+                            android:padding="10dip"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -258,6 +258,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/team_b_name_header"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Team B"
@@ -342,20 +343,19 @@
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:orientation="horizontal"
                             android:layout_weight="1"
                             android:layout_margin="5dip"
                             android:layout_gravity="bottom">
 
-                            <Button
+                            <ImageView
                                 android:id="@+id/add_team_b_teammates"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Add"
                                 android:layout_weight="1"
-                                android:textColor="@color/white"
-                                android:backgroundTint="@color/main_theme_background_color"/>
+                                android:src="@drawable/add_icon"
+                                android:padding="10dip"/>
                         </LinearLayout>
                     </LinearLayout>
 

@@ -1,21 +1,23 @@
 package com.deadshot.scorecard.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.deadshot.scorecard.constants.CommonConstants;
 import com.deadshot.scorecard.R;
 import com.deadshot.scorecard.adapters.TeammateAdditionDetailsAdapter;
+import com.deadshot.scorecard.constants.CommonConstants;
 import com.deadshot.scorecard.models.CricketTeammate;
 import com.deadshot.scorecard.models.MatchDetails;
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,8 +42,37 @@ public class RecordGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record_game_activity_layout);
 
         setupViews();
+        configureInputTrackerListeners();
         configureOnClickListeners();
 
+    }
+
+    private void configureInputTrackerListeners() {
+
+        configureTeamNameListener(R.id.team_a_name, R.id.team_a_name_header);
+        configureTeamNameListener(R.id.team_b_name, R.id.team_b_name_header);
+
+    }
+
+    private void configureTeamNameListener(int team_name, int team_name_header) {
+        TextInputEditText teamAName = findViewById(team_name);
+        teamAName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                TextView textView = findViewById(team_name_header);
+                textView.setText(editable.toString());
+            }
+        });
     }
 
     private void setupViews() {
@@ -164,7 +195,7 @@ public class RecordGameActivity extends AppCompatActivity {
 
     private void configureAddTeamATeammateListeners() {
 
-        Button addTeamATeammatesButton = findViewById(R.id.add_team_a_teammates);
+        ImageView addTeamATeammatesButton = findViewById(R.id.add_team_a_teammates);
 
         addTeamATeammatesButton.setOnClickListener(new View.OnClickListener() {
 
@@ -204,7 +235,7 @@ public class RecordGameActivity extends AppCompatActivity {
 
     private void configureAddTeamBTeammateListeners() {
 
-        Button addTeamBTeammatesButton = findViewById(R.id.add_team_b_teammates);
+        ImageView addTeamBTeammatesButton = findViewById(R.id.add_team_b_teammates);
 
         addTeamBTeammatesButton.setOnClickListener(new View.OnClickListener() {
 
