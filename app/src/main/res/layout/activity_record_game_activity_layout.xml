@@ -15,68 +15,8 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:weightSum="1"
-            android:padding="10dip">
-
-            <EditText
-                android:id="@+id/team_a_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Team A"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:maxLines="1"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:padding="10dip">
-
-            <EditText
-                android:id="@+id/team_b_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Team B"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:maxLines="1"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:padding="10dip">
-
-            <EditText
-                android:id="@+id/match_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Date Of Match"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:inputType="date"
-                android:maxLines="1"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:padding="10dip">
+            android:padding="10dip"
+            android:background="">
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,6 +27,101 @@
                 android:textAlignment="center"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_margin="5dip">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Team A">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/team_a_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_margin="5dip">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Team B">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/team_b_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_margin="5dip"
+            android:weightSum="5">
+
+<!--            <EditText-->
+<!--                android:id="@+id/match_date"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Date Of Match"-->
+<!--                android:textSize="20sp"-->
+<!--                android:padding="10dp"-->
+<!--                android:inputType="date"-->
+<!--                android:maxLines="1"-->
+<!--                android:layout_weight="1"/>-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/date_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Match Date"
+                android:layout_weight="4">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/match_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/date_picker_button"
+                android:text="Select Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

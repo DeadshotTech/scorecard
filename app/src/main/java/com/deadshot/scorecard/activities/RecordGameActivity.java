@@ -17,6 +17,7 @@ import com.deadshot.scorecard.R;
 import com.deadshot.scorecard.adapters.TeammateAdditionDetailsAdapter;
 import com.deadshot.scorecard.models.CricketTeammate;
 import com.deadshot.scorecard.models.MatchDetails;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -80,8 +81,8 @@ public class RecordGameActivity extends AppCompatActivity {
     private void configureStartMatchListener() {
 
         Button bnStartMatch = (Button) findViewById(R.id.start_game_button);
-        EditText etTeamAName = (EditText) findViewById(R.id.team_a_name);
-        EditText etTeamBName = (EditText) findViewById(R.id.team_b_name);
+        TextInputEditText etTeamAName = (TextInputEditText) findViewById(R.id.team_a_name);
+        TextInputEditText etTeamBName = (TextInputEditText) findViewById(R.id.team_b_name);
         EditText etDateOfMatch = (EditText) findViewById(R.id.match_date);
 
         bnStartMatch.setOnClickListener(new View.OnClickListener() {
