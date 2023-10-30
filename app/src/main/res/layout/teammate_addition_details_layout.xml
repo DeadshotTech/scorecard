@@ -8,35 +8,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="6"
+        android:background="@drawable/border">
+
+        <TextView
+            android:id="@+id/teammate_addition_details_player_jersey_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="45"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/teammate_addition_details_player_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Let's set you up"
+            android:text="Player Name"
             android:textSize="20sp"
             android:padding="10dp"
-            android:layout_weight="1.5"/>
+            android:layout_weight="3"/>
 
-        <Button
-            android:id="@+id/teammate_addition_details_edit_player"
+        <TextView
+            android:id="@+id/teammate_addition_details_player_age"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Edit"
-            android:layout_weight=".75"
-            android:textColor="@color/white"
-            android:backgroundTint="#063970"
-            android:layout_marginRight="5dip"/>
+            android:text="23"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
-        <Button
+        <ImageView
             android:id="@+id/teammate_addition_details_delete_player"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:layout_weight=".75"
-            android:textColor="@color/white"
-            android:backgroundTint="#063970"/>
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/delete_icon"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="5dip"/>
 
     </LinearLayout>
 

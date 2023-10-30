@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_theme_background_color">#063970</color>
+    <color name="coin_gold_color">#FFD700</color>
 </resources>
