@@ -40,7 +40,7 @@
                 android:paddingTop="10dip"
                 android:paddingBottom="10dip"
                 android:weightSum="3"
-                android:background="#063970">
+                android:background="@color/main_theme_background_color">
 
                 <TextView
                     android:id="@+id/scoring_screen_batsman1_runs"
@@ -113,7 +113,7 @@
                 android:paddingTop="10dip"
                 android:paddingBottom="10dip"
                 android:weightSum="3"
-                android:background="#063970">
+                android:background="@color/main_theme_background_color">
 
                 <TextView
                     android:id="@+id/scoring_screen_batsman2_runs"
@@ -186,7 +186,7 @@
                 android:paddingTop="10dip"
                 android:paddingBottom="10dip"
                 android:weightSum="3"
-                android:background="#063970">
+                android:background="@color/main_theme_background_color">
 
                 <TextView
                     android:id="@+id/scoring_screen_baller_runs_conceded"
@@ -290,7 +290,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_lbw"
@@ -304,7 +304,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_catch"
@@ -318,7 +318,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_run_out"
@@ -332,7 +332,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
             </LinearLayout>
 
@@ -355,7 +355,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_no"
@@ -369,7 +369,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_bye"
@@ -383,7 +383,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_lb"
@@ -397,7 +397,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
             </LinearLayout>
 
@@ -420,7 +420,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_one"
@@ -434,7 +434,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_two"
@@ -448,7 +448,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_three"
@@ -462,7 +462,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_four"
@@ -476,7 +476,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_five"
@@ -490,7 +490,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
                 <TextView
                     android:id="@+id/scoring_screen_score_six"
@@ -504,7 +504,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="2dip"
-                    android:background="#063970"/>
+                    android:background="@color/main_theme_background_color"/>
 
             </LinearLayout>
 
