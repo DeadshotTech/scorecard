@@ -38,6 +38,7 @@ public class MatchDetails implements Serializable {
         setTeamATeammates(new ArrayList<>());
         setTeamBTeammates(new ArrayList<>());
         setActiveBattingTeam(CommonConstants.EMPTY_STRING);
+        setActiveBallingTeam(CommonConstants.EMPTY_STRING);
 
     }
 
